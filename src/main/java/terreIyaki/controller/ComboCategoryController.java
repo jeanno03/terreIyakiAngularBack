@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import terreIyaki.entity.Combo;
 import terreIyaki.entity.ComboCategory;
 import terreIyaki.repository.ComboCategoryRepository;
 
@@ -20,7 +19,7 @@ public class ComboCategoryController {
 		this.comboCategoryRepository = comboCategoryRepository;
 	}
 
-		@RequestMapping(value = "/getComboCategoryById", method = RequestMethod.GET)
+	@RequestMapping(value = "/getComboCategoryById", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public ComboCategory getComboCategoryById(@RequestParam(name="id", defaultValue="0L")Long id) {
 		return comboCategoryRepository.findById(id);

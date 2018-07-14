@@ -74,9 +74,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 				category02);
 		Product produit09 = new Product("Nougat lychee", 2.72f, "assets/images/nougat-lychee.jpeg", "Nougat mou sésame",
 				category02);
-		
-		//******************Menu 1 ******************************//
-		
+			
 		Category category101 = new Category("1 - Entrées");
 		Category category102 = new Category("2 - Plats au choix");
 		Category category103 = new Category("3 - Desserts au choix");
@@ -92,8 +90,6 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		comboCategory01.setCategory(category101);
 		comboCategory02.setCategory(category102);
-		
-		//********************many product début ****************************
 
 		Set produts01 = new HashSet<Product>() {
 			{
@@ -117,30 +113,8 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		comboCategory01.setProducts(produts01);
 		comboCategory02.setProducts(produts02);
 		
-		
-		//********************many product fin ****************************
-		
-		//********************one product début ****************************
-//		Product pc01 = new Product ("Soupe Miso et salade de chou japonaise", 2.72f, "assets/images/miso-et-salade.jpg","Le miso, pâte de haricots de soja fermentée et salée, et sa salade de chou japonaise",category04, vat02);
-//		
-//		
-//		Product pc02 = new Product ("Assortiment de 5 brochettes", 5.45f, "assets/images/5-brochettes.jpeg", "1 au boeuf, 1 au poulet, 1 au fromage, 1 aux boulettes de poulet, 1 aux ailes de poulet",category04, vat02);
-//		Product pc03 = new Product ("4 brochettes de roulés de boeuf au fromage", 5.45f, "assets/images/brochettes-boeuf-fromage.jpg","Brochettes de boeuf au fromage - Yakitori",category04, vat02);
-//		
-//		pc01.setComboCategory(comboCategory01);
-//		pc02.setComboCategory(comboCategory02);
-//		pc03.setComboCategory(comboCategory02);
-		
-		
-		
-		//********************one product fin ****************************
-		
-		//******************Menu 2 ******************************//
-		
 		Combo combo02 = new Combo("Menu M10", 15.45f, "assets/images/mb10.png",
 				"8 sushi saumon ou thon accompagnés d'une soupe Miso et d'une salade de chou... avec un excellent dessert");
-
-		//********************many product début ****************************
 		
 		Set produts04 = new HashSet<Product>() {
 			{
@@ -163,7 +137,6 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 						category04, vat02));
 			}
 		};
-		//********************many product fin ****************************
 		
 		ComboCategory comboCategory03 = new ComboCategory(1);
 		ComboCategory comboCategory04 = new ComboCategory(2);
@@ -178,33 +151,9 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		comboCategory04.setCategory(category102);
 		comboCategory05.setCategory(category103);
 		
-		//********************many product début ****************************
 		comboCategory03.setProducts(produts01);
 		comboCategory04.setProducts(produts04);
 		comboCategory05.setProducts(produts05);
-		//********************many product fin ****************************
-		
-		//********************one product début ****************************
-		
-//		Product pc04 = new Product ("Soupe Miso et salade de chou japonaise", 2.72f, "assets/images/miso-et-salade.jpg","Le miso, pâte de haricots de soja fermentée et salée, et sa salade de chou japonaise",category04, vat02);
-//		
-//		Product pc05 = new Product ("8 sushi saumon", 10.91f, "assets/images/8-sushi-saumon.jpeg","Plat japonais composé d'un riz vinaigré appelé shari combiné avec du saumon cru de l'Atlantique",category04, vat02);
-//		Product pc06 = new Product ("8 sushi thon", 10.91f, "assets/images/8-sushi-thon.jpg","Plat japonais composé d'un riz vinaigré appelé shari combiné avec du thon cru de l'Atlantique",category04, vat02);
-//		
-//		Product pc07 = new Product ("Perles de coco x2", 1.81f, "assets/images/perle-coco.jpeg","La perle de coco est un dessert chinois à base de farine de riz gluant, fourré à la crème de haricot mungo et au sucre et saupoudré de copeaux de chair de noix de coco",category04, vat02);
-//		Product pc08 = new Product ("Nougat lychee", 1.81f, "assets/images/nougat-lychee.jpeg","Nougat mou sésame",category04, vat02);
-//		
-//		pc04.setComboCategory(comboCategory03);
-//		
-//		pc05.setComboCategory(comboCategory04);
-//		pc06.setComboCategory(comboCategory04);
-//		
-//		pc07.setComboCategory(comboCategory05);
-//		pc08.setComboCategory(comboCategory05);
-		
-		//********************one product fin ****************************
-		
-		//************************************************//
 		
 		produit01.setVat(vat02);
 		produit02.setVat(vat02);
@@ -217,23 +166,11 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 
 		produit08.setVat(vat02);
 		produit09.setVat(vat02);
-		//********************many product début ****************************
+
 		productRepository.save(produts01);
 		productRepository.save(produts02);	
 		productRepository.save(produts04);
 		productRepository.save(produts05);
-		//********************many product fin ****************************
-		
-		//********************one product début ****************************
-//		productRepository.save(pc01);
-//		productRepository.save(pc02);
-//		productRepository.save(pc03);
-//		productRepository.save(pc04);
-//		productRepository.save(pc05);
-//		productRepository.save(pc06);
-//		productRepository.save(pc07);
-//		productRepository.save(pc08);
-		//********************one product fin ****************************
 
 		CategoryRepository.save(category00);
 		CategoryRepository.save(category01);

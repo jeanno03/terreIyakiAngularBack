@@ -9,9 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,6 +18,7 @@ import lombok.NonNull;
 import java.util.Set;
 
 @Entity
+//le nom du produit n'est pas unique
 //@Table(
 //uniqueConstraints=
 //@UniqueConstraint(columnNames={"name"}))
@@ -33,8 +32,6 @@ public class Product{
 
 	private Set<ComboCategory> comboCategories;
 	
-//	private ComboCategory comboCategory;
-
 	private Category category;
 
 	private Vat vat;
@@ -111,17 +108,6 @@ public class Product{
 	public Long getTheId() {
 		return id;
 	}
-	
-//	@Transient
-//	public Long getTheComboCategoryId() {
-//		Long ComboCategoryId=null;
-//		try {
-//			ComboCategoryId = this.comboCategory.getId();
-//		}catch (NullPointerException ex) {
-//			//
-//		}
-//		return ComboCategoryId;
-//	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -177,16 +163,6 @@ public class Product{
 		return category;
 	}
 
-//	@ManyToOne
-//	@JoinColumn(name = "comboCategory_id")
-//	public ComboCategory getComboCategory() {
-//		return comboCategory;
-//	}
-//
-//	public void setComboCategory(ComboCategory comboCategory) {
-//		this.comboCategory = comboCategory;
-//	}
-
 	public void setCategory(Category category) {
 		this.category = category;
 	}
@@ -225,9 +201,8 @@ public class Product{
 	public Float getVatPrice() {
 		Float vatPrice = this.price;
 		try {
-//		if(this.getVat().getId()!=null) {
 			vatPrice += this.price * this.getVat().getRate();
-//		}
+			
 		}catch(NullPointerException ex) {
 			
 		}

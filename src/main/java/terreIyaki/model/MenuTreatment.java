@@ -1,8 +1,5 @@
 package terreIyaki.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import terreIyaki.repository.CategoryRepository;
@@ -25,16 +22,4 @@ public class MenuTreatment {
 	@Autowired
 	private ComboCategoryRepository comboCategoryRepository;
 	
-	
-	public Map<Integer, Product> getComboDetails(){
-		Map ma01 = new HashMap<Integer, Product>();
-		
-		
-		return ma01;
-		
-	}
-	
-	
-
-
 }

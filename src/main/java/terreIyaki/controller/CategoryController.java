@@ -32,11 +32,6 @@ public class CategoryController {
 		return categoryRepository.findByNameIgnoreCase(name);
 	}
 	
-//	@RequestMapping(value = "/getCarsList2", method = RequestMethod.GET)
-//	public List<Car> getListCar2(@RequestParam(name="name", defaultValue="Ferrari")String name){
-//		return carRepository2.findByNameIgnoreCase(name);
-//	}
-	
 	@GetMapping("/getCategoryById")
 	@CrossOrigin(origins = "*")
 	public Category getCategoryById() {

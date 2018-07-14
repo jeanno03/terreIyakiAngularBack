@@ -14,14 +14,10 @@ public class ComboController {
 	
 	private ComboRepository comboRepository;
 	
-	
-	
 	public ComboController(ComboRepository comboRepository) {
 		super();
 		this.comboRepository = comboRepository;
 	}
-
-
 
 	@RequestMapping(value = "/getComboByName", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")

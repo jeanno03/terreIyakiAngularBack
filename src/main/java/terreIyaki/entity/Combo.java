@@ -26,7 +26,7 @@ public class Combo {
 
 	private Long id;
 	private @NonNull String name;
-	private @NonNull float price;
+	private @NonNull float vatPrice;
 	private String picture;
 	private String description;
 
@@ -42,27 +42,27 @@ public class Combo {
 		super();
 	}
 
-	public Combo(String name, float price, String picture, String description) {
+	public Combo(String name, float vatPrice, String picture, String description) {
 		super();
 		this.name = name;
-		this.price = price;
+		this.vatPrice = vatPrice;
 		this.picture = picture;
 		this.description = description;
 	}
 
-	public Combo(String name, float price, String picture, String description, Statut statut) {
+	public Combo(String name, float vatPrice, String picture, String description, Statut statut) {
 		super();
 		this.name = name;
-		this.price = price;
+		this.vatPrice = vatPrice;
 		this.picture = picture;
 		this.description = description;
 		this.statut = statut;
 	}
 
-	public Combo(String name, float price, String picture, String description, Menu menu) {
+	public Combo(String name, float vatPrice, String picture, String description, Menu menu) {
 		super();
 		this.name = name;
-		this.price = price;
+		this.vatPrice = vatPrice;
 		this.picture = picture;
 		this.description = description;
 		this.menu = menu;
@@ -92,12 +92,12 @@ public class Combo {
 		this.name = name;
 	}
 
-	public float getPrice() {
-		return price;
+	public float getVatPrice() {
+		return vatPrice;
 	}
 
-	public void setPrice(float price) {
-		this.price = price;
+	public void setPrice(float vatPrice) {
+		this.vatPrice = vatPrice;
 	}
 
 	public String getPicture() {
@@ -158,7 +158,7 @@ public class Combo {
 
 	@Override
 	public String toString() {
-		return "\nCombo [id=" + id + ", name=" + name + ", price=" + price + ", picture=" + picture + ", description="
+		return "\nCombo [id=" + id + ", name=" + name + ", vatPrice=" + vatPrice + ", picture=" + picture + ", description="
 				+ description + "]";
 	}
 
