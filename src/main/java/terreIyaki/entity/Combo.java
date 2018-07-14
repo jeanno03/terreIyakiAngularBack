@@ -42,6 +42,7 @@ public class Combo {
 		super();
 	}
 
+
 	public Combo(String name, float vatPrice, String picture, String description) {
 		super();
 		this.name = name;
@@ -67,7 +68,6 @@ public class Combo {
 		this.description = description;
 		this.menu = menu;
 	}
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -96,9 +96,10 @@ public class Combo {
 		return vatPrice;
 	}
 
-	public void setPrice(float vatPrice) {
+	public void setVatPrice(float vatPrice) {
 		this.vatPrice = vatPrice;
 	}
+
 
 	public String getPicture() {
 		return picture;
