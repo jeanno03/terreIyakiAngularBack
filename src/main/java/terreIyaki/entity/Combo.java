@@ -100,7 +100,6 @@ public class Combo {
 		this.vatPrice = vatPrice;
 	}
 
-
 	public String getPicture() {
 		return picture;
 	}

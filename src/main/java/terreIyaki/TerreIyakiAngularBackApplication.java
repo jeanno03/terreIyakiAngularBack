@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import lombok.NonNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -32,6 +34,12 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 
 	@Autowired
 	private ComboCategoryRepository comboCategoryRepository;
+	
+	@Autowired
+	private MyTableRepository myTableRepository;
+	
+	@Autowired
+	private StatutRepository statutRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TerreIyakiAngularBackApplication.class, args);
@@ -58,7 +66,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 				"Célèbre boisson mythique", category03);
 		Product produit04 = new Product("Perrier 33 cl", 1.90f, "assets/images/perrier-33cl.png",
 				"Recommandé pour la digestion", category03);
-		Product produit05 = new Product("Riz sauté au poulet à sauce japonaise", 8.18f,
+		Product produit05 = new Product("Nouilles sauté au poulet à sauce japonaise", 8.18f,
 				"assets/images/bento-poulet-frit.jpg",
 				"Les Japonais préparent cette recette avec du bouillon de poulet, de la sauce soja, et surtout du mirin qui va apporter la saveur sucrée qu’on lui connaît bien",
 				category01);
@@ -166,6 +174,31 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 
 		produit08.setVat(vat02);
 		produit09.setVat(vat02);
+		
+		MyTable table01 = new MyTable(1);
+		MyTable table02 = new MyTable(2);
+		MyTable table03 = new MyTable(3);
+		MyTable table04 = new MyTable(4);
+		MyTable table05 = new MyTable(5);
+		MyTable table06 = new MyTable(6);
+		MyTable table07 = new MyTable(7);
+		MyTable table08 = new MyTable(8);
+		MyTable table09 = new MyTable(9);
+		MyTable table10 = new MyTable(10);
+		
+		Statut statut01 = new Statut("libre");
+		Statut statut02 = new Statut("réservé");
+		
+		table01.setStatut(statut01);
+		table02.setStatut(statut01);
+		table03.setStatut(statut01);
+		table04.setStatut(statut01);
+		table05.setStatut(statut01);
+		table06.setStatut(statut01);
+		table07.setStatut(statut01);
+		table08.setStatut(statut01);
+		table09.setStatut(statut02);
+		table10.setStatut(statut02);
 
 		productRepository.save(produts01);
 		productRepository.save(produts02);	
@@ -204,9 +237,101 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		comboCategoryRepository.save(comboCategory03);
 		comboCategoryRepository.save(comboCategory04);
 		comboCategoryRepository.save(comboCategory05);
-
+		
+		myTableRepository.save(table01);
+		myTableRepository.save(table02);
+		myTableRepository.save(table03);
+		myTableRepository.save(table04);
+		myTableRepository.save(table05);
+		myTableRepository.save(table06);
+		myTableRepository.save(table07);
+		myTableRepository.save(table08);
+		myTableRepository.save(table09);
+		myTableRepository.save(table10);
+		
+		statutRepository.save(statut01);
+		statutRepository.save(statut02);
+		
+		
 		productRepository.findAll().forEach(System.out::println);
 		CategoryRepository.findAll().forEach(System.out::println);
 		vatRepository.findAll().forEach(System.out::println);
+		
+		MyTable table101 = new MyTable(1);
+		MyTable table102 = new MyTable(2);
+		MyTable table103 = new MyTable(3);
+		MyTable table104 = new MyTable(4);
+		MyTable table105 = new MyTable(5);
+		MyTable table106 = new MyTable(6);
+		MyTable table107 = new MyTable(7);
+		MyTable table108 = new MyTable(8);
+		MyTable table109 = new MyTable(9);
+		MyTable table110 = new MyTable(10);
+		
+		
+		List<MyTable> myTableListProvisoire = new ArrayList();
+		myTableListProvisoire.add(table106);
+		myTableListProvisoire.add(table110);
+		myTableListProvisoire.add(table104);
+		myTableListProvisoire.add(table108);
+		myTableListProvisoire.add(table101);
+		myTableListProvisoire.add(table102);
+		myTableListProvisoire.add(table109);
+		myTableListProvisoire.add(table107);
+		myTableListProvisoire.add(table105);
+		myTableListProvisoire.add(table103);
+		
+		int i=0;
+		int provi=0;
+		
+		for(int j=0;j<myTableListProvisoire.size();j++) {
+	    	System.out.println("avant numéro : " + myTableListProvisoire.get(j).getTableNumber());
+	    }
+				
+ 	
+	    provi=1;
+	    
+		 for( int j = 0 ; j < provi  ; j++) { 
+			 
+		 System.out.println("provi dans boucle (" + j + ")" );
+		 
+	        for (i = 0; i < myTableListProvisoire.size() - 1; i++) {	         
+	        	
+	            if (myTableListProvisoire.get(i).getTableNumber() > myTableListProvisoire.get(i + 1).getTableNumber()) {
+
+	            	MyTable myTableModelProvisoire = new MyTable (myTableListProvisoire.get(i).getTableNumber());
+
+	              myTableListProvisoire.get(i).setTableNumber(myTableListProvisoire.get(i + 1).getTableNumber());
+	              
+	              myTableListProvisoire.get(i + 1).setTableNumber(myTableModelProvisoire.getTableNumber());
+	              
+	              provi=provi+1;	             
+
+	            }        	
+
+	        }
+
+	 }
+	 System.out.println("provi finale: " + provi);
+	    
+	    for(int j=0;j<myTableListProvisoire.size();j++) {
+	    	System.out.println("après numéro : " + myTableListProvisoire.get(j).getTableNumber());
+	    }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 	}
 }
