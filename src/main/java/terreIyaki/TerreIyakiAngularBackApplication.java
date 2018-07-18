@@ -281,21 +281,37 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		myTableListProvisoire.add(table105);
 		myTableListProvisoire.add(table103);
 		
+//		myTableListProvisoire.add(table101);
+//		myTableListProvisoire.add(table102);
+//		myTableListProvisoire.add(table103);
+//		myTableListProvisoire.add(table104);
+//		myTableListProvisoire.add(table105);
+//		myTableListProvisoire.add(table106);
+//		myTableListProvisoire.add(table107);
+//		myTableListProvisoire.add(table108);
+//		myTableListProvisoire.add(table109);
+//		myTableListProvisoire.add(table110);
+		
 		int i=0;
-		int provi=0;
+		int changement;
+		int provi=1;
 		
 		for(int j=0;j<myTableListProvisoire.size();j++) {
 	    	System.out.println("avant numéro : " + myTableListProvisoire.get(j).getTableNumber());
 	    }
 				
  	
-	    provi=1;
+		
 	    
 		 for( int j = 0 ; j < provi  ; j++) { 
 			 
+			 changement=0;
+			 
 		 System.out.println("provi dans boucle (" + j + ")" );
 		 
-	        for (i = 0; i < myTableListProvisoire.size() - 1; i++) {	         
+	        for (i = 0; i < myTableListProvisoire.size() - 1; i++) {	
+	        	
+	        	
 	        	
 	            if (myTableListProvisoire.get(i).getTableNumber() > myTableListProvisoire.get(i + 1).getTableNumber()) {
 
@@ -305,11 +321,17 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 	              
 	              myTableListProvisoire.get(i + 1).setTableNumber(myTableModelProvisoire.getTableNumber());
 	              
-	              provi=provi+1;	             
+	              changement=1;	             
 
-	            }        	
+	            }        
+	            
+
 
 	        }
+	        
+            if(changement!=0) {
+            	provi=provi+1;
+            }
 
 	 }
 	 System.out.println("provi finale: " + provi);
