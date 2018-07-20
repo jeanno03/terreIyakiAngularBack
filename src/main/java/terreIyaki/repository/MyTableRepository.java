@@ -10,5 +10,7 @@ import terreIyaki.entity.MyTable;
 @CrossOrigin(origins = "http://localhost:4200")
 @Repository
 public interface MyTableRepository extends JpaRepository<MyTable, Long>{
+	
+	MyTable findById(Long id) ;
 
 }
