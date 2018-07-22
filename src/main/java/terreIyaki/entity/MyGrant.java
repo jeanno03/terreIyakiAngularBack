@@ -2,6 +2,7 @@ package terreIyaki.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.NonNull;
 
@@ -64,8 +67,8 @@ public class MyGrant {
 		this.name = name;
 	}
 
-	@ManyToMany
-	@JoinColumn(name = "my_user_login")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "myGrants", cascade = CascadeType.ALL)
 	public Set<MyUser> getMyUsers() {
 		return myUsers;
 	}

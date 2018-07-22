@@ -5,8 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import lombok.NonNull;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -40,6 +38,12 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 	
 	@Autowired
 	private StatutRepository statutRepository;
+	
+	@Autowired
+	private MyUserRepository myUserRepository;
+	
+	@Autowired
+	private MyGrantRepository myGrantRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TerreIyakiAngularBackApplication.class, args);
@@ -199,6 +203,32 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		table08.setStatut(statut01);
 		table09.setStatut(statut02);
 		table10.setStatut(statut02);
+		
+		
+		MyUser myUser01 = new MyUser("jeannory.phou@gmail.com","theBoss", "jeannory", "phou");
+		MyUser myUser02 = new MyUser("terreiyaki@gmail.com","theKing", "terre", "iyaki");
+		
+		MyGrant myGrant01 = new MyGrant ("client");
+		MyGrant myGrant02 = new MyGrant ("serveur");
+		MyGrant myGrant03 = new MyGrant ("cuisinier");
+		MyGrant myGrant04 = new MyGrant ("caissier");
+		MyGrant myGrant05 = new MyGrant ("administrateur");
+		
+		Set myGrants01 = new HashSet<MyGrant>() {{
+			add(myGrant02);
+			add(myGrant03); 
+			add(myGrant04);
+			add(myGrant05);
+		}};
+		
+		Set myGrants02 = new HashSet<MyGrant>() {{
+			add(myGrant02);
+			add(myGrant03); 
+			add(myGrant04);
+		}};
+		
+		myUser01.setMyGrants(myGrants01);
+		myUser02.setMyGrants(myGrants02);
 
 		productRepository.save(produts01);
 		productRepository.save(produts02);	
@@ -251,6 +281,22 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		statutRepository.save(statut01);
 		statutRepository.save(statut02);
+		
+
+		
+		myGrantRepository.save(myGrants01);
+		myGrantRepository.save(myGrants02);
+
+		myGrantRepository.save(myGrant01);
+		myGrantRepository.save(myGrant02);
+		myGrantRepository.save(myGrant03);
+		myGrantRepository.save(myGrant04);
+		myGrantRepository.save(myGrant05);
+		
+		myUserRepository.save(myUser01);
+		myUserRepository.save(myUser02);
+		
+
 		
 		
 		productRepository.findAll().forEach(System.out::println);

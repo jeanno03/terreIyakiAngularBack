@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -24,9 +25,8 @@ uniqueConstraints=
 public class MyUser {
 	
 	private Long id;
-	private @NonNull String login;
-	private @NonNull String mdp;
 	private @NonNull String email;
+	private @NonNull String login;
 	private String firstName;
 	private String lastName;
 	
@@ -39,12 +39,11 @@ public class MyUser {
 	public MyUser() {
 		super();
 	}
-
-	public MyUser(String login, String mdp, String email, String firstName, String lastName) {
+	
+	public MyUser(String email, String login, String firstName, String lastName) {
 		super();
-		this.login = login;
-		this.mdp = mdp;
 		this.email = email;
+		this.login = login;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
@@ -64,28 +63,20 @@ public class MyUser {
 		this.id = id;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getLogin() {
 		return login;
 	}
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-
-	public String getMdp() {
-		return mdp;
-	}
-
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getFirstName() {
@@ -104,8 +95,8 @@ public class MyUser {
 		this.lastName = lastName;
 	}
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "myUsers", cascade = CascadeType.ALL)
+	@ManyToMany
+	@JoinColumn(name = "my_grant_login")
 	public Set<MyGrant> getMyGrants() {
 		return myGrants;
 	}
@@ -136,9 +127,11 @@ public class MyUser {
 
 	@Override
 	public String toString() {
-		return "\nMyUser [id=" + id + ", login=" + login + ", mdp=" + mdp + ", email=" + email + ", firstName="
-				+ firstName + ", lastName=" + lastName + "]";
+		return "MyUser [id=" + id + ", email=" + email + ", login=" + login + ", firstName=" + firstName + ", lastName="
+				+ lastName + "]";
 	}
+
+
 
 
 }
