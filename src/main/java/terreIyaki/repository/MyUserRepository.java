@@ -15,6 +15,10 @@ import terreIyaki.entity.MyUser;
 //@EnableJpaRepositories
 public interface MyUserRepository extends JpaRepository<MyUser,Long>{
 	
-	MyUser getUserByEmail(String email);	
-
+	MyUser getUserByEmail(String email);
+	
+	MyUser getUserByLogin(String login);
+	
+	MyUser findUserByEmail(String email, String test);
+	
 }
