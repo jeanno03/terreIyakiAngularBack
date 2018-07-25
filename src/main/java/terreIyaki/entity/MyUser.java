@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -41,7 +42,7 @@ public class MyUser {
 	}
 	
 	public MyUser(String email, String login, String firstName, String lastName) {
-		super();
+		this();
 		this.email = email;
 		this.login = login;
 		this.firstName = firstName;

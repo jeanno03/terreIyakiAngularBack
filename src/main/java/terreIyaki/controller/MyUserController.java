@@ -39,6 +39,7 @@ public class MyUserController {
 		return myuser01;
 	}
 	
+	//Evolution de l'application : méthode non utilisé
 	//va appeler une méthode qui va controler l'unicité de l'email et du login 
 	//et sauvegarder MyUser
 	@RequestMapping(value = "/tryAndSaveMyUser", method = RequestMethod.GET)

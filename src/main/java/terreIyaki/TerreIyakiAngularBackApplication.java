@@ -44,7 +44,13 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 	
 	@Autowired
 	private MyGrantRepository myGrantRepository;
+	
+	@Autowired
+	private CategoryMessageRepository categoryMessageRepository;
 
+	@Autowired
+	private TheMessageRepository theMessageRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TerreIyakiAngularBackApplication.class, args);
 	}
@@ -229,6 +235,15 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		myUser01.setMyGrants(myGrants01);
 		myUser02.setMyGrants(myGrants02);
+		
+		CategoryMessage categoryMessage01 = new CategoryMessage (1, "succès");
+		CategoryMessage categoryMessage02 = new CategoryMessage (2, "erreur");
+		
+		TheMessage theMessage01 = new TheMessage(1,"Félicitation votre compte a été créé");
+		TheMessage theMessage02 = new TheMessage(2,"Erreur login déjà utilisé, veuillez en choisir un autre");
+		
+		theMessage01.setCategoryMessage(categoryMessage01);
+		theMessage02.setCategoryMessage(categoryMessage02);
 
 		productRepository.save(produts01);
 		productRepository.save(produts02);	
@@ -296,8 +311,11 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		myUserRepository.save(myUser01);
 		myUserRepository.save(myUser02);
 		
-
+		categoryMessageRepository.save(categoryMessage01);
+		categoryMessageRepository.save(categoryMessage02);
 		
+		theMessageRepository.save(theMessage01);
+		theMessageRepository.save(theMessage02);		
 		
 		productRepository.findAll().forEach(System.out::println);
 		CategoryRepository.findAll().forEach(System.out::println);
