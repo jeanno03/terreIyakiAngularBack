@@ -27,12 +27,22 @@ public class TheMessageController {
 		this.theMessageRepository = theMessageRepository;
 	}
 
-//méthode qui va appeler la méthode qui va créer l'utilisateurt si condition réuni
+	//méthode qui va appeler la méthode qui va créer l'utilisateurt si condition réuni
 	@RequestMapping(value = "/getMessageCreateUser", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public TheMessage getMessageCreateUser(String email, String login, String lastName, String firstName) {
 		MyUser myUser01 = new MyUser(email, login, lastName, firstName);
 		return myUserServiceInterface.createMyUserMessage(myUser01);
 	}
-
+	
+	//méthode qui va appeler la méthode qui va modifier l'utilisateurt si condition réuni
+	@RequestMapping(value = "/getMessageEditUser", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public TheMessage getMessageEditUser(String email, String login, String lastName, String firstName) {
+	//	System.out.println(" lastName : " +lastName);
+		
+		MyUser myUser01 = new MyUser(email, login, lastName, firstName);
+		return myUserServiceInterface.editMyUserMessage(myUser01);
+	}
+	
 }

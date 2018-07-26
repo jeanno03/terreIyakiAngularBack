@@ -240,10 +240,16 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		CategoryMessage categoryMessage02 = new CategoryMessage (2, "erreur");
 		
 		TheMessage theMessage01 = new TheMessage(1,"Félicitation votre compte a été créé");
-		TheMessage theMessage02 = new TheMessage(2,"Erreur login déjà utilisé, veuillez en choisir un autre");
+		TheMessage theMessage02 = new TheMessage(2,"Erreur : login déjà utilisé, veuillez en choisir un autre");
+		
+		TheMessage theMessage03 = new TheMessage(3,"Votre compte a été modifié conformément à votre demande");
+		TheMessage theMessage04 = new TheMessage(4,"Erreur : au moin un des champs doit être différent");
 		
 		theMessage01.setCategoryMessage(categoryMessage01);
 		theMessage02.setCategoryMessage(categoryMessage02);
+		
+		theMessage03.setCategoryMessage(categoryMessage01);
+		theMessage04.setCategoryMessage(categoryMessage02);
 
 		productRepository.save(produts01);
 		productRepository.save(produts02);	
@@ -316,6 +322,9 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		theMessageRepository.save(theMessage01);
 		theMessageRepository.save(theMessage02);		
+		
+		theMessageRepository.save(theMessage03);
+		theMessageRepository.save(theMessage04);
 		
 		productRepository.findAll().forEach(System.out::println);
 		CategoryRepository.findAll().forEach(System.out::println);
