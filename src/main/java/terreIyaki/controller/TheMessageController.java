@@ -39,8 +39,7 @@ public class TheMessageController {
 	@RequestMapping(value = "/getMessageEditUser", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public TheMessage getMessageEditUser(String email, String login, String lastName, String firstName) {
-	//	System.out.println(" lastName : " +lastName);
-		
+	//	System.out.println(" lastName : " +lastName);	
 		MyUser myUser01 = new MyUser(email, login, lastName, firstName);
 		return myUserServiceInterface.editMyUserMessage(myUser01);
 	}

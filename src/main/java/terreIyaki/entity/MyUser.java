@@ -22,7 +22,7 @@ import lombok.NonNull;
 @Entity
 @Table(
 uniqueConstraints=
-@UniqueConstraint(columnNames={"login","email"}))
+@UniqueConstraint(columnNames={"email","login"}))
 public class MyUser {
 	
 	private Long id;
