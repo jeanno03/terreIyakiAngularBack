@@ -51,6 +51,9 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 	@Autowired
 	private TheMessageRepository theMessageRepository;
 	
+	@Autowired
+	private OrderTypeRepository orderTypeRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TerreIyakiAngularBackApplication.class, args);
 	}
@@ -199,6 +202,11 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		Statut statut01 = new Statut("libre");
 		Statut statut02 = new Statut("réservé");
 		
+		Statut statut03 = new Statut("commande en cours");
+		Statut statut04 = new Statut("commande validée");
+		Statut statut05 = new Statut("commande réglée");
+		Statut statut06 = new Statut("commande annulée");
+		
 		table01.setStatut(statut01);
 		table02.setStatut(statut01);
 		table03.setStatut(statut01);
@@ -245,11 +253,20 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		TheMessage theMessage03 = new TheMessage(3,"Votre compte a été modifié conformément à votre demande");
 		TheMessage theMessage04 = new TheMessage(4,"Erreur : au moin un des champs doit être différent");
 		
+		TheMessage theMessage05 = new TheMessage(5,"Vous avez choisi de commander à emporter!");
+		TheMessage theMessage06 = new TheMessage(6,"Vous avez choisi de commander sur place!");
+		
 		theMessage01.setCategoryMessage(categoryMessage01);
 		theMessage02.setCategoryMessage(categoryMessage02);
 		
 		theMessage03.setCategoryMessage(categoryMessage01);
 		theMessage04.setCategoryMessage(categoryMessage02);
+		
+		theMessage05.setCategoryMessage(categoryMessage01);
+		theMessage06.setCategoryMessage(categoryMessage01);
+		
+		OrderType orderType01 = new OrderType ("Sur place");
+		OrderType orderType02 = new OrderType ("A emporter");
 
 		productRepository.save(produts01);
 		productRepository.save(produts02);	
@@ -302,7 +319,10 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		statutRepository.save(statut01);
 		statutRepository.save(statut02);
-		
+		statutRepository.save(statut03);
+		statutRepository.save(statut04);
+		statutRepository.save(statut05);
+		statutRepository.save(statut06);
 
 		
 		myGrantRepository.save(myGrants01);
@@ -325,6 +345,12 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		theMessageRepository.save(theMessage03);
 		theMessageRepository.save(theMessage04);
+		
+		theMessageRepository.save(theMessage05);
+		theMessageRepository.save(theMessage06);
+		
+		orderTypeRepository.save(orderType01);
+		orderTypeRepository.save(orderType02);
 		
 		productRepository.findAll().forEach(System.out::println);
 		CategoryRepository.findAll().forEach(System.out::println);

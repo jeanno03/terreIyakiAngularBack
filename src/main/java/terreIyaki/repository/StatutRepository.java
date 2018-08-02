@@ -12,4 +12,6 @@ import terreIyaki.entity.Statut;
 @Repository
 public interface StatutRepository extends JpaRepository<Statut, Long>{
 
+	Statut getStatutByName(String name);
+	
 }

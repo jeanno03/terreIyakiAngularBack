@@ -27,16 +27,16 @@ public class MyUserController {
 	@RequestMapping(value = "/getUserByEmail", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public MyUser getUserByEmail(String email) {
-		MyUser myuser01 = myUserRepository.getUserByEmail(email);
-		return myuser01;
+		return myUserRepository.getUserByEmail(email);
+		
 		
 	}
 	
 	@RequestMapping(value = "/getUserByLogin", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	MyUser getUserByLogin(String login) {
-		MyUser myuser01 = myUserRepository.getUserByLogin(login);
-		return myuser01;
+		return myUserRepository.getUserByLogin(login);
+		
 	}
 	
 	//Evolution de l'application : ****** méthode non utilisé ********
@@ -45,11 +45,32 @@ public class MyUserController {
 	@RequestMapping(value = "/tryAndSaveMyUser", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public MyUser findUserByEmail(String email, String login, String lastName, String firstName) {
-		MyUser myUser01 = myUserRepository.getUserByEmail(email);
-		MyUser myUser02= new MyUser(email, login, lastName, firstName);
-		return myUserServiceInterface.createMyUser(myUser02);
+		MyUser myUser01= new MyUser(email, login, lastName, firstName);
+		return myUserServiceInterface.createMyUser(myUser01);
 		
 	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 
