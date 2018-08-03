@@ -208,6 +208,11 @@ public class Product{
 		}
 		return vatPrice;
 	}
+	
+	@Transient
+	public Float getTax() {
+		return this.getVat().getRate();
+	}
 
 	@Override
 	public String toString() {

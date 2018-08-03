@@ -24,4 +24,21 @@ public class StatutController {
 		return statutRepository.getStatutByName(name);
 	}
 
+	@RequestMapping(value = "/getStatutByNumero", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	Statut getStatutByNumero(int id) {
+		return statutRepository.findByNumero(id);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -30,6 +30,8 @@ public class OrderItem {
 	private Statut statut;
 	
 	private Combo combo;
+	
+	private MyOrder myOrder;
 
 	public OrderItem() {
 		super();
@@ -105,6 +107,13 @@ public class OrderItem {
 		this.comment = comment;
 	}
 
+	@Transient
+	public Float getVatPrice() {
+		float vatPrice=0f;
+		vatPrice = this.price + (this.price *this.tax);
+		return vatPrice;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	public Product getProduct() {
@@ -133,6 +142,16 @@ public class OrderItem {
 
 	public void setStatut(Statut statut) {
 		this.statut = statut;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "myOrder_id")
+	public MyOrder getMyOrder() {
+		return myOrder;
+	}
+
+	public void setMyOrder(MyOrder myOrder) {
+		this.myOrder = myOrder;
 	}
 
 	@ManyToOne

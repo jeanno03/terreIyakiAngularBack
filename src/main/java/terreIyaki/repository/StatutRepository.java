@@ -14,4 +14,7 @@ public interface StatutRepository extends JpaRepository<Statut, Long>{
 
 	Statut getStatutByName(String name);
 	
+	Statut findByNumero(int id);
+	
+	
 }

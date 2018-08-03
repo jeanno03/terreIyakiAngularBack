@@ -14,6 +14,8 @@ public interface TheMessageRepository extends JpaRepository<TheMessage, Long>{
 	
 	TheMessage findByNumber(int number);
 	
+	//TheMessage createOrderItem(Long productId, Long userId);
+	
 	
 
 }

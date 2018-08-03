@@ -199,13 +199,19 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		MyTable table09 = new MyTable(9);
 		MyTable table10 = new MyTable(10);
 		
-		Statut statut01 = new Statut("libre");
-		Statut statut02 = new Statut("réservé");
+		Statut statut01 = new Statut(1, "libre");
+		Statut statut02 = new Statut(2, "réservé");
 		
-		Statut statut03 = new Statut("commande en cours");
-		Statut statut04 = new Statut("commande validée");
-		Statut statut05 = new Statut("commande réglée");
-		Statut statut06 = new Statut("commande annulée");
+		Statut statut03 = new Statut(3, "commande en cours");
+		Statut statut04 = new Statut(4, "commande validée");
+		Statut statut05 = new Statut(5, "commande réglée");
+		Statut statut06 = new Statut(6, "commande annulée");
+		
+		Statut statut07 = new Statut(7, "produit en cours de commande");
+		Statut statut08 = new Statut(8, "produit commandé");
+		Statut statut09 = new Statut(9, "produit en préparation");
+		Statut statut10 = new Statut(10, "produit préparation ok");
+		Statut statut11 = new Statut(11, "produit servi");
 		
 		table01.setStatut(statut01);
 		table02.setStatut(statut01);
@@ -255,6 +261,8 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		TheMessage theMessage05 = new TheMessage(5,"Vous avez choisi de commander à emporter!");
 		TheMessage theMessage06 = new TheMessage(6,"Vous avez choisi de commander sur place!");
+		
+		TheMessage theMessage07 = new TheMessage(7,"Produit ajouté au panier!");
 		
 		theMessage01.setCategoryMessage(categoryMessage01);
 		theMessage02.setCategoryMessage(categoryMessage02);
@@ -324,6 +332,11 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		statutRepository.save(statut05);
 		statutRepository.save(statut06);
 
+		statutRepository.save(statut07);
+		statutRepository.save(statut08);
+		statutRepository.save(statut09);
+		statutRepository.save(statut10);
+		statutRepository.save(statut11);
 		
 		myGrantRepository.save(myGrants01);
 		myGrantRepository.save(myGrants02);
@@ -348,6 +361,8 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		theMessageRepository.save(theMessage05);
 		theMessageRepository.save(theMessage06);
+		theMessageRepository.save(theMessage07);
+		
 		
 		orderTypeRepository.save(orderType01);
 		orderTypeRepository.save(orderType02);

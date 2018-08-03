@@ -1,18 +1,23 @@
 package terreIyaki.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import terreIyaki.entity.MyOrder;
 import terreIyaki.entity.MyUser;
+import terreIyaki.entity.OrderItem;
 import terreIyaki.entity.OrderType;
+import terreIyaki.entity.Product;
 import terreIyaki.entity.Statut;
 import terreIyaki.entity.TheMessage;
 import terreIyaki.repository.MyOrderRepository;
 import terreIyaki.repository.MyUserRepository;
+import terreIyaki.repository.OrderItemRepository;
 import terreIyaki.repository.OrderTypeRepository;
+import terreIyaki.repository.ProductRepository;
 import terreIyaki.repository.StatutRepository;
 import terreIyaki.repository.TheMessageRepository;
 
@@ -34,6 +39,13 @@ public class MyOrderService implements MyOrderServiceInterface{
 	
 	@Autowired
 	private OrderTypeRepository orderTypeRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
+	
 	
 	@Override
 	public TheMessage createMyOrderMessage(String name, String email) {
@@ -69,11 +81,34 @@ public class MyOrderService implements MyOrderServiceInterface{
 		
 	}
 	
-public MyUser getLastOrderByUser(Long userId){
-	myOrderRepository.selectMyOrderByUser(userId);
+//méthode qui va créé orderItem, récupérer le last myOrder
+//elle va rechercher statut.numero=7
+//elle va faire un orderItem set ProductId, statutId=9
+	//va retourner la list de tous les ordersItems de la commande
+	@Override
+public TheMessage createOrderItem(Long productId, Long userId){
 	
-	return null;
+	//je cherche le produit via son id
+	Product p01 = productRepository.findById(productId);
+	
+	//je cherche le statut numéro 7
+	Statut s01 = statutRepository.findByNumero(7);
+	
+	//je cherche la derniere commande
+	MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+	
+	String comment = "produit ajouté";
+	
+	OrderItem o01 = new OrderItem(p01.getPrice(), p01.getTax(),comment);
+	o01.setProduct(p01);
+	o01.setStatut(s01);
+	o01.setMyOrder(m01);
+	
+	orderItemRepository.save(o01);
+	
+	return theMessageRepository.findByNumber(7);
+	
+
 }
-
-
+	
 }

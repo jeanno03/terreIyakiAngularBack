@@ -35,5 +35,11 @@ public class ProductController {
 	public List<Product> getProductByName(@RequestParam(name="name", defaultValue="")String name){
 		return productRepository.findByNameIgnoreCase(name);
 	}
+	
+	@RequestMapping(value = "/getProductById", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public Product findProductbyId(Long id) {
+		return productRepository.findById(id);
+	}
 
 }
