@@ -30,7 +30,7 @@ public interface MyOrderRepository extends JpaRepository<MyOrder, Long>{
 	List<MyOrder> selectMyOrderByUser(@Param("paramId")Long userId);
 	
 	//méthode qui va récupérer la last commande de l'user
-	@Query(nativeQuery=true, value = "SELECT TOP 1 * FROM my_order m JOIN statut s ON m.statut_id= s.id WHERE m.my_user_id= :paramId AND s.name ='commande en cours' ORDER BY m.my_user_id DESC")
+	@Query(nativeQuery=true, value = "SELECT TOP 1 * FROM my_order m JOIN statut s ON m.statut_id= s.id WHERE m.my_user_id= :paramId AND s.name ='commande en cours' ORDER BY m.id DESC")
 	MyOrder selectLastMyOrderByUser(@Param("paramId")Long userId);
 	
 	//interet ==> PageRequest pageRequest
