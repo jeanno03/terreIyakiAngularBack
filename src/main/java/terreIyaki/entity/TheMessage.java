@@ -75,6 +75,11 @@ public class TheMessage {
 	public void setCategoryMessage(CategoryMessage categoryMessage) {
 		this.categoryMessage = categoryMessage;
 	}
+	
+//	@Transient
+//	public String getCategoryMessageName() {
+//		return this.getCategoryMessage().getName();
+//	}
 
 	@Override
 	public String toString() {

@@ -123,6 +123,11 @@ public class OrderItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	
+	@Transient
+	public String getProductName() {
+		return this.getProduct().getName();
+	}
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "orderItem")
