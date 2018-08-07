@@ -11,4 +11,6 @@ public interface MyUserServiceInterface {
 	
 	public TheMessage editMyUserMessage(MyUser myUser01);
 	
+
+	
 }

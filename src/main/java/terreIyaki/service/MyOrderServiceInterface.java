@@ -12,5 +12,13 @@ public interface MyOrderServiceInterface {
 	public TheMessage createMyOrderMessage(String name, String email);
 	
 	public TheMessage createOrderItem(Long productId, Long userId);
+	
+	public TheMessage chooseTable(Long tableId, Long  userId);
+	
+	public TheMessage incrementeOrderItem(Long productId, Long userId);
+	
+	public TheMessage decrementeOrderItem(Long productId, Long userId);
+	
+	public TheMessage deleteOrderItem(Long productId, Long userId); 
 
 }

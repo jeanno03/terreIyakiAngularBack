@@ -22,22 +22,6 @@ public class MyOrderController {
 		this.myOrderRepository = myOrderRepository;
 	}
 	
-//	@RequestMapping(value = "/selectLastOrderByEmail", method = RequestMethod.GET)
-//	@CrossOrigin(origins = "*")
-//	public MyOrder selectLastOrderByEmail(Date today, String email) {
-//		return myOrderRepository.selectLastOrderByEmail(today, email);
-//	}
-//	
-	
-	
-	
-//	http://localhost:8080/myUsers/3/myOrders
-//	On va chercher toutes les commandes de l'utlisateurs
-	
-//	@RequestMapping(value="/getMyOrderByMyUserId)
-//	public MyOrder getMyOrderByMyUserId(Long id) {
-//		return myOrderRepository.getMyOrderByMyUser(id);
-//	}
 	
 	//test only
 	@RequestMapping(value = "/selectMyOrderBy1", method = RequestMethod.GET)
@@ -51,7 +35,7 @@ public class MyOrderController {
 	public List<MyOrder> selectMyOrderByUser(Long userId){
 		return myOrderRepository.selectMyOrderByUser(userId);
 	}
-	
+
 	
 	@RequestMapping(value = "/selectLastMyOrderByUser", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
@@ -59,10 +43,5 @@ public class MyOrderController {
 		return myOrderRepository.selectLastMyOrderByUser(userId);
 	}
 	
-//	@RequestMapping(value = "/selectLastMyOrderByUser", method = RequestMethod.GET)
-//	@CrossOrigin(origins = "*")
-//	public List<MyOrder> selectLastMyOrderByUser(Long userId){
-//		return myOrderRepository.selectLastMyOrderByUser(userId, new PageRequest(0,1));
-//	}
 	
 }

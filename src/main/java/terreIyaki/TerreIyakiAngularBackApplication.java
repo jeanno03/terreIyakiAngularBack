@@ -260,9 +260,15 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		TheMessage theMessage04 = new TheMessage(4,"Erreur : au moin un des champs doit être différent");
 		
 		TheMessage theMessage05 = new TheMessage(5,"Vous avez choisi de commander à emporter!");
-		TheMessage theMessage06 = new TheMessage(6,"Vous avez choisi de commander sur place!");
+		TheMessage theMessage06 = new TheMessage(6,"Vous avez choisi de commander sur place, veuillez choisir une table");
 		
 		TheMessage theMessage07 = new TheMessage(7,"Produit ajouté au panier!");
+		
+		TheMessage theMessage08 = new TheMessage(8,"Table réservée, veullez commander");
+		
+		TheMessage theMessage09 = new TheMessage(9,"Produit ajouté");
+		TheMessage theMessage10 = new TheMessage(10,"Produit retiré");
+		TheMessage theMessage11 = new TheMessage(11,"Ligne de produit supprimé");
 		
 		theMessage01.setCategoryMessage(categoryMessage01);
 		theMessage02.setCategoryMessage(categoryMessage02);
@@ -272,6 +278,15 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		theMessage05.setCategoryMessage(categoryMessage01);
 		theMessage06.setCategoryMessage(categoryMessage01);
+		
+		theMessage07.setCategoryMessage(categoryMessage01);
+		
+		theMessage08.setCategoryMessage(categoryMessage01);
+		
+		theMessage09.setCategoryMessage(categoryMessage01);
+		theMessage10.setCategoryMessage(categoryMessage01);
+		theMessage11.setCategoryMessage(categoryMessage01);
+		
 		
 		OrderType orderType01 = new OrderType ("Sur place");
 		OrderType orderType02 = new OrderType ("A emporter");
@@ -362,7 +377,11 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		theMessageRepository.save(theMessage05);
 		theMessageRepository.save(theMessage06);
 		theMessageRepository.save(theMessage07);
+		theMessageRepository.save(theMessage08);
 		
+		theMessageRepository.save(theMessage09);
+		theMessageRepository.save(theMessage10);
+		theMessageRepository.save(theMessage11);
 		
 		orderTypeRepository.save(orderType01);
 		orderTypeRepository.save(orderType02);

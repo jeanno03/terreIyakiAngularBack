@@ -38,6 +38,12 @@ public class OrderTypeController {
 		return myOrderServiceInterface.createMyOrderMessage(name, email);		
 	}	
 	
+	//on ajoute la table a la commande sur place
+	@RequestMapping(value = "/chooseTable", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public TheMessage chooseTable(Long tableId, Long  userId) {
+		return myOrderServiceInterface.chooseTable(tableId, userId);
+	}
 	
 
 }

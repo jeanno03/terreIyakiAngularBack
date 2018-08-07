@@ -87,6 +87,11 @@ public class MyTable {
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
+	
+	@Transient
+	public String getStatutName() {
+		return this.getStatut().getName();
+	}
 
 	@Override
 	public String toString() {

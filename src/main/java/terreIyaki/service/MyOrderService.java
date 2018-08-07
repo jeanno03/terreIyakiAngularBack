@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import terreIyaki.entity.MyOrder;
+import terreIyaki.entity.MyTable;
 import terreIyaki.entity.MyUser;
 import terreIyaki.entity.OrderItem;
 import terreIyaki.entity.OrderType;
@@ -14,6 +15,7 @@ import terreIyaki.entity.Product;
 import terreIyaki.entity.Statut;
 import terreIyaki.entity.TheMessage;
 import terreIyaki.repository.MyOrderRepository;
+import terreIyaki.repository.MyTableRepository;
 import terreIyaki.repository.MyUserRepository;
 import terreIyaki.repository.OrderItemRepository;
 import terreIyaki.repository.OrderTypeRepository;
@@ -44,6 +46,9 @@ public class MyOrderService implements MyOrderServiceInterface {
 
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+	
+	@Autowired
+	private MyTableRepository mytableRepository;
 
 	@Override
 	public TheMessage createMyOrderMessage(String name, String email) {
@@ -77,6 +82,31 @@ public class MyOrderService implements MyOrderServiceInterface {
 		return null;
 
 	}
+	
+	//Méthode qui va ajouter le numéro de table à la commande
+	public TheMessage chooseTable(Long tableId, Long  userId) {
+		
+		//on récupère la derniere commande de l'user
+		MyOrder mo01 = myOrderRepository.selectLastMyOrderByUser(userId);
+		
+		//on récupère la table
+		MyTable mt01 =  mytableRepository.findById(tableId);
+		
+		//je rajoute le numéro de la table
+		mo01.setMyTable(mt01);
+		
+		//on modifie le statut de la table
+		Statut st01 = statutRepository.findByNumero(2);
+		mt01.setStatut(st01);
+		
+		//je persiste les changements
+		mytableRepository.save(mt01);
+		myOrderRepository.save(mo01);
+		
+		//je renvoi le message de succès
+		return theMessageRepository.findByNumber(8);
+		
+	}
 
 	// méthode qui va créé orderItem, récupérer le last myOrder
 	// elle va rechercher statut.numero=7
@@ -98,7 +128,6 @@ public class MyOrderService implements MyOrderServiceInterface {
 		int quantite = 1;
 
 		// on va chercher toutes les orderItems de la commande
-
 		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
 
 		if (li01.isEmpty()) {
@@ -114,7 +143,7 @@ public class MyOrderService implements MyOrderServiceInterface {
 		} else {
 			
 			int chercher = 0;
-			// on va chercher tous les orderItem de la commande
+
 			for (OrderItem o01 : li01) {
 
 				// si le produit existe dans la commande j'incrémente de 1
@@ -142,5 +171,64 @@ public class MyOrderService implements MyOrderServiceInterface {
 		return theMessageRepository.findByNumber(7);
 
 	}
+	
+	public TheMessage incrementeOrderItem(Long productId, Long userId) {
+		
+		// je cherche la derniere commande
+		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+		
+		// on va chercher toutes les orderItems de la commande
+		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
+		
+		// quand je retrouve le produit j'incremente de 1
+		for (OrderItem o01 : li01) {
+			
+			if (o01.getProduct().getId()==(productId)) {
+				o01.setQuantite(o01.getQuantite() + 1);
+				orderItemRepository.save(o01);
+		}
+	}
+		return theMessageRepository.findByNumber(9);
+	}
 
+	public TheMessage decrementeOrderItem(Long productId, Long userId) {
+		
+		// je cherche la derniere commande
+		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+		
+		// on va chercher toutes les orderItems de la commande
+		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
+		
+		// quand je retrouve le produit j'incremente de 1
+		for (OrderItem o01 : li01) {
+			
+			if (o01.getProduct().getId()==(productId)) {
+				o01.setQuantite(o01.getQuantite() - 1);
+				orderItemRepository.save(o01);
+		}
+	}
+		return theMessageRepository.findByNumber(10);
+	}	
+	
+	
+	
+	
+	public TheMessage deleteOrderItem(Long productId, Long userId) {
+		
+		// je cherche la derniere commande
+		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+		
+		// on va chercher toutes les orderItems de la commande
+		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
+		
+		// quand je retrouve le produit je le supprime
+		for (OrderItem o01 : li01) {
+			
+			if (o01.getProduct().getId()==(productId)) {
+				orderItemRepository.delete(o01);
+		}
+	}
+		return theMessageRepository.findByNumber(11);
+	}
+	
 }

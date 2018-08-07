@@ -140,6 +140,12 @@ public class OrderItem {
 		return this.getProduct().getName();
 	}
 
+	@Transient
+	public Long getIdProduct() {
+		return this.getProduct().getId();
+		
+	}
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "orderItem")
 	public Set<Historisation> getHistorisations() {
