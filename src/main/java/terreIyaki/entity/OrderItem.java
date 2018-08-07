@@ -21,7 +21,9 @@ public class OrderItem {
 	private Long id;
 	private @NonNull float price;
 	private @NonNull float tax;
+	private int quantite;
 	private String comment;
+	
 
 	private Product product;
 
@@ -37,10 +39,11 @@ public class OrderItem {
 		super();
 	}
 
-	public OrderItem(float price, float tax, String comment) {
+	public OrderItem(float price, float tax, int quantite, String comment) {
 		super();
 		this.price = price;
 		this.tax = tax;
+		this.quantite=quantite;
 		this.comment = comment;
 	}
 
@@ -97,6 +100,14 @@ public class OrderItem {
 
 	public void setTax(float tax) {
 		this.tax = tax;
+	}
+
+	public int getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
 	}
 
 	public String getComment() {

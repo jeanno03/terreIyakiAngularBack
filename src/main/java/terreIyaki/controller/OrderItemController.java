@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import terreIyaki.entity.MyOrder;
 import terreIyaki.entity.OrderItem;
 import terreIyaki.repository.OrderItemRepository;
 
@@ -35,9 +36,13 @@ public class OrderItemController {
 	
 	//createOrderItem
 
-	
 
-	
+
+	@RequestMapping(value = "/getOrderItemsByOrder", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public List<OrderItem> getOrderItemsByOrder(Long myOrderId){
+		return orderItemRepository.getOrderItemsByIdMyOrder(myOrderId);
+	}
 	
 	
 }

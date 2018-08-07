@@ -22,93 +22,125 @@ import terreIyaki.repository.StatutRepository;
 import terreIyaki.repository.TheMessageRepository;
 
 @Service
-public class MyOrderService implements MyOrderServiceInterface{
-	
-	
+public class MyOrderService implements MyOrderServiceInterface {
+
 	@Autowired
 	private MyUserRepository myUserRepository;
-	
+
 	@Autowired
 	private TheMessageRepository theMessageRepository;
-	
+
 	@Autowired
 	private MyOrderRepository myOrderRepository;
-	
+
 	@Autowired
 	private StatutRepository statutRepository;
-	
+
 	@Autowired
 	private OrderTypeRepository orderTypeRepository;
-	
+
 	@Autowired
 	private ProductRepository productRepository;
-	
+
 	@Autowired
 	private OrderItemRepository orderItemRepository;
-	
-	
+
 	@Override
 	public TheMessage createMyOrderMessage(String name, String email) {
-		
+
 		// orderType01 est le orderType choisi cad sur place
-		
+
 		OrderType orderType02 = orderTypeRepository.findByName(name);
-		
-		//myUser01 est l'utilisateur qui effectue l'action
+
+		// myUser01 est l'utilisateur qui effectue l'action
 		MyUser myUser01 = myUserRepository.getUserByEmail(email);
-		
-		//statut01 est le statut de la commande
+
+		// statut01 est le statut de la commande
 		Statut statut01 = statutRepository.getStatutByName("commande en cours");
-		
+
 		Date aujourdhui = new Date();
-		
+
 		MyOrder myOrder01 = new MyOrder(aujourdhui);
-		
+
 		myOrder01.setOrderType(orderType02);
 		myOrder01.setMyUser(myUser01);
 		myOrder01.setStatut(statut01);
-		
+
 		myOrderRepository.save(myOrder01);
-		
-		//message de succès sur place ou a emporter
-		if(name.equals("A emporter")) {
-			return theMessageRepository.findByNumber(5);	
-		}
-		else if(name.equals("Sur place")) {
+
+		// message de succès sur place ou a emporter
+		if (name.equals("A emporter")) {
+			return theMessageRepository.findByNumber(5);
+		} else if (name.equals("Sur place")) {
 			return theMessageRepository.findByNumber(6);
 		}
 		return null;
-		
-	}
-	
-//méthode qui va créé orderItem, récupérer le last myOrder
-//elle va rechercher statut.numero=7
-//elle va faire un orderItem set ProductId, statutId=9
-	//va retourner la list de tous les ordersItems de la commande
-	@Override
-public TheMessage createOrderItem(Long productId, Long userId){
-	
-	//je cherche le produit via son id
-	Product p01 = productRepository.findById(productId);
-	
-	//je cherche le statut numéro 7
-	Statut s01 = statutRepository.findByNumero(7);
-	
-	//je cherche la derniere commande
-	MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
-	
-	String comment = "produit ajouté";
-	
-	OrderItem o01 = new OrderItem(p01.getPrice(), p01.getTax(),comment);
-	o01.setProduct(p01);
-	o01.setStatut(s01);
-	o01.setMyOrder(m01);
-	
-	orderItemRepository.save(o01);
-	
-	return theMessageRepository.findByNumber(7);
-	
 
-}
-	
+	}
+
+	// méthode qui va créé orderItem, récupérer le last myOrder
+	// elle va rechercher statut.numero=7
+	// elle va faire un orderItem set ProductId, statutId=9
+	// va retourner la list de tous les ordersItems de la commande
+	@Override
+	public TheMessage createOrderItem(Long productId, Long userId) {
+
+		// je cherche le produit via son id
+		Product p01 = productRepository.findById(productId);
+
+		// je cherche le statut numéro 7
+		Statut s01 = statutRepository.findByNumero(7);
+
+		// je cherche la derniere commande
+		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+
+		String comment = "produit ajouté";
+		int quantite = 1;
+
+		// on va chercher toutes les orderItems de la commande
+
+		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
+
+		if (li01.isEmpty()) {
+			// aucune commande donc je créé l orderItem
+			OrderItem o00 = new OrderItem(p01.getPrice(), p01.getTax(), quantite, comment);
+
+			o00.setProduct(p01);
+			o00.setStatut(s01);
+			o00.setMyOrder(m01);
+
+			orderItemRepository.save(o00);
+
+		} else {
+			
+			int chercher = 0;
+			// on va chercher tous les orderItem de la commande
+			for (OrderItem o01 : li01) {
+
+				// si le produit existe dans la commande j'incrémente de 1
+				//soit chercher =1
+				if (o01.getProduct().getId()==(productId)) {
+					o01.setQuantite(o01.getQuantite() + 1);
+					orderItemRepository.save(o01);
+					chercher = 1;
+
+			}
+		}
+			//si aucune incrémentation (chercher = 0) je créé l order Item
+			if(chercher == 0) {
+				 OrderItem o02 = new OrderItem(p01.getPrice(), p01.getTax(), quantite ,
+				 comment);
+				 o02.setProduct(p01);
+				 o02.setStatut(s01);
+				 o02.setMyOrder(m01);
+				
+				 orderItemRepository.save(o02);
+			}
+		}
+
+
+		return theMessageRepository.findByNumber(7);
+
+	}
+
 }
