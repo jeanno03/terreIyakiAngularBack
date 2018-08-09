@@ -110,7 +110,12 @@ public class ComboCategory {
 	
 	@Transient
 	public String getCategoryName() {
+		try {
 		return this.getCategory().getName();
+	}catch(NullPointerException ex) {
+		System.out.println(ex);
+		return "void";
+	}
 	}
 
 	@Override

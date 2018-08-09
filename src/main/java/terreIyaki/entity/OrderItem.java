@@ -2,11 +2,13 @@ package terreIyaki.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -120,9 +122,14 @@ public class OrderItem {
 
 	@Transient
 	public Float getVatPrice() {
+		try {
 		float vatPrice=0f;
 		vatPrice = this.price + (this.price *this.tax);
 		return vatPrice;
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return 0f;
+		}
 	}
 
 	@ManyToOne
@@ -137,17 +144,39 @@ public class OrderItem {
 	
 	@Transient
 	public String getProductName() {
+		try {
 		return this.getProduct().getName();
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return "menu";
+		}
+	
+	}
+		@Transient
+		public String getComboName() {
+			try {
+			return this.getCombo().getName();
+			}catch(NullPointerException ex) {
+				System.out.println(ex);
+				return "carte";
+			}
+			
 	}
 
 	@Transient
 	public Long getIdProduct() {
+		try {
 		return this.getProduct().getId();
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return 0L;
+		}
 		
 	}
+
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "orderItem")
+	@ManyToMany(mappedBy = "orderItems", cascade = CascadeType.ALL)
 	public Set<Historisation> getHistorisations() {
 		return historisations;
 	}
@@ -185,6 +214,17 @@ public class OrderItem {
 	public void setCombo(Combo combo) {
 		this.combo = combo;
 	}
+	
+	//inutile?
+//	@Transient
+//	public Long getComboId(){
+//		try {
+//		return this.getCombo().getId();
+//		}catch(NullPointerException ex) {
+//			System.out.println(ex);
+//			return 0l;
+//		}
+//	}
 
 	@Override
 	public String toString() {

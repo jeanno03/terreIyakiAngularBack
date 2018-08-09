@@ -90,7 +90,12 @@ public class MyTable {
 	
 	@Transient
 	public String getStatutName() {
+		try {
 		return this.getStatut().getName();
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return "void";
+		}
 	}
 
 	@Override

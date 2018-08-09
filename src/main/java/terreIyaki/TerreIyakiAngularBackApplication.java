@@ -213,6 +213,9 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		Statut statut10 = new Statut(10, "produit préparation ok");
 		Statut statut11 = new Statut(11, "produit servi");
 		
+		Statut statut12 = new Statut(12, "menu en cours de commande");
+		Statut statut13 = new Statut(13, "menu commandé");
+		
 		table01.setStatut(statut01);
 		table02.setStatut(statut01);
 		table03.setStatut(statut01);
@@ -271,6 +274,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		TheMessage theMessage11 = new TheMessage(11,"Ligne de produit supprimé");
 		
 		TheMessage theMessage12 = new TheMessage(12,"Menu ajouté");
+		TheMessage theMessage14 = new TheMessage(14,"Menu supprimé");
 		
 		theMessage01.setCategoryMessage(categoryMessage01);
 		theMessage02.setCategoryMessage(categoryMessage02);
@@ -356,6 +360,9 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		statutRepository.save(statut10);
 		statutRepository.save(statut11);
 		
+		statutRepository.save(statut12);
+		statutRepository.save(statut13);
+		
 		myGrantRepository.save(myGrants01);
 		myGrantRepository.save(myGrants02);
 
@@ -387,6 +394,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		theMessageRepository.save(theMessage11);
 		
 		theMessageRepository.save(theMessage12);
+		theMessageRepository.save(theMessage14);
 		
 		orderTypeRepository.save(orderType01);
 		orderTypeRepository.save(orderType02);

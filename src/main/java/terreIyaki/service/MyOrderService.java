@@ -2,12 +2,15 @@ package terreIyaki.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import terreIyaki.entity.Combo;
+import terreIyaki.entity.Historisation;
 import terreIyaki.entity.MyOrder;
 import terreIyaki.entity.MyTable;
 import terreIyaki.entity.MyUser;
@@ -17,6 +20,7 @@ import terreIyaki.entity.Product;
 import terreIyaki.entity.Statut;
 import terreIyaki.entity.TheMessage;
 import terreIyaki.repository.ComboRepository;
+import terreIyaki.repository.HistorisationRepository;
 import terreIyaki.repository.MyOrderRepository;
 import terreIyaki.repository.MyTableRepository;
 import terreIyaki.repository.MyUserRepository;
@@ -55,6 +59,9 @@ public class MyOrderService implements MyOrderServiceInterface {
 	
 	@Autowired
 	private ComboRepository comboRepository;
+	
+	@Autowired
+	private HistorisationRepository historisationRepository;
 	
 
 	@Override
@@ -151,7 +158,9 @@ public class MyOrderService implements MyOrderServiceInterface {
 			int chercher = 0;
 
 			for (OrderItem o01 : li01) {
-
+				
+				
+try {
 				// si le produit existe dans la commande j'incrémente de 1
 				//soit chercher =1
 				if (o01.getProduct().getId()==(productId)) {
@@ -160,6 +169,11 @@ public class MyOrderService implements MyOrderServiceInterface {
 					chercher = 1;
 
 			}
+				
+}catch(NullPointerException ex)	{
+	//on passe au tour suivant s'il s'agit 'un combo (o01.getProduct().getId()=null)
+}
+				
 		}
 			//si aucune incrémentation (chercher = 0) je créé l order Item
 			if(chercher == 0) {
@@ -188,11 +202,16 @@ public class MyOrderService implements MyOrderServiceInterface {
 		
 		// quand je retrouve le produit j'incremente de 1
 		for (OrderItem o01 : li01) {
-			
+			try {
+				// si le produit existe dans la commande j'incrémente de 1
+				//soit chercher =1
 			if (o01.getProduct().getId()==(productId)) {
 				o01.setQuantite(o01.getQuantite() + 1);
 				orderItemRepository.save(o01);
 		}
+			}catch(NullPointerException ex)	{
+				//on passe au tour suivant s'il s'agit 'un combo (o01.getProduct().getId()=null)
+			}
 	}
 		return theMessageRepository.findByNumber(9);
 	}
@@ -207,11 +226,16 @@ public class MyOrderService implements MyOrderServiceInterface {
 		
 		// quand je retrouve le produit j'incremente de 1
 		for (OrderItem o01 : li01) {
-			
+			// si le produit existe dans la commande j'incrémente de 1
+			//soit chercher =1
+			try {
 			if (o01.getProduct().getId()==(productId)) {
 				o01.setQuantite(o01.getQuantite() - 1);
 				orderItemRepository.save(o01);
 		}
+			}catch(NullPointerException ex)	{
+				//on passe au tour suivant s'il s'agit 'un combo (o01.getProduct().getId()=null)
+			}
 	}
 		return theMessageRepository.findByNumber(10);
 	}	
@@ -229,16 +253,25 @@ public class MyOrderService implements MyOrderServiceInterface {
 		
 		// quand je retrouve le produit je le supprime
 		for (OrderItem o01 : li01) {
-			
+
+			try {
 			if (o01.getProduct().getId()==(productId)) {
 				orderItemRepository.delete(o01);
 		}
+			}catch(NullPointerException ex)	{
+				//on passe au tour suivant s'il s'agit 'un combo (o01.getProduct().getId()=null)
+			}
 	}
 		return theMessageRepository.findByNumber(11);
 	}
 	
+	
+	//********en cours ==> 	Statut statut12 = new Statut(12, "menu en cours de commande");
+	//set a faire pour menu et pour product
 	//méthode qui va créer l order item du combo, mess ==> 12
 	public TheMessage createComboOrderItems(Long userId, Long comboId, List <Long> productsId) {
+		//je cherche l'user
+		MyUser my01 = myUserRepository.findById(userId);
 		
 		// je cherche la derniere commande
 		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
@@ -251,6 +284,11 @@ public class MyOrderService implements MyOrderServiceInterface {
 		for(Long l01 : productsId) {
 			li01.add(productRepository.findById(l01));
 		}
+		
+		//cette list va contenir tous les ordersItems sauvegardé dans historisation
+		//menu et produits
+		//cela va me servir a retrouver les produits du menus
+		Set orderItems01 = new HashSet<OrderItem>();
 
 		//je créé toutes les orderItem
 		//attention je ne rajoute que le prix du combo
@@ -258,20 +296,66 @@ public class MyOrderService implements MyOrderServiceInterface {
 		//pour le test j'ajoute le prix ttc une taxe a 1, quantité à 1
 		OrderItem o00 = new OrderItem(co01.getVatPrice(), 0f, 1, "menu ajouté");
 		
+		
+		orderItems01.add(o00);
 		o00.setCombo(co01);
 		o00.setMyOrder(m01);
 		orderItemRepository.save(o00);
+		
+		
+		
 		
 for(int i=0;i<productsId.size();i++) {
 Product po01 = productRepository.findById(productsId.get(i));
 	OrderItem oi01 = new OrderItem(0f, 0f, 1, "produit du menu ajouté");
 	oi01.setProduct(po01);
 	oi01.setMyOrder(m01);
+	//je rajoute tous les orderItem à Set orderItems01
+	orderItems01.add(oi01);
 	orderItemRepository.save(oi01);
 }
+
+
+orderItemRepository.save(orderItems01);
+
+
+//jenregistre dans historisation le user/ le myOrder/ la list de orderItems
+//cest tel user qui a enregistré les orders items de cette commande...
+Date aujourdhui = new Date();
+Historisation hi01 = new Historisation(aujourdhui);
+
+
+
+hi01.setMyUser(my01);
+hi01.setMyOrder(m01);
+hi01.setOrderItems(orderItems01);
+
+historisationRepository.save(hi01);
+//J'envoi en parametre dans la méthode createComboOrderItems
+
 	
 		return theMessageRepository.findByNumber(12);
 	}
+	
+//	mess=>14 ==> supprimer tous les orderItems du menu
+	public TheMessage deleteComboOrderItem(List <Long> orderItemIds) {
+		
+		// quand je retrouve la commande je le supprime de tous les orderItemIds
+		
+		for(Long lo01 : orderItemIds) {
+			try {
+		OrderItem oi01 = orderItemRepository.findById(lo01);
+		orderItemRepository.delete(oi01);
+			}catch(NullPointerException ex)	{
+				System.out.println(ex);
+			}
+		}
+		
+
+
+		return theMessageRepository.findByNumber(14);
+	}
+	
 	
 	
 }

@@ -30,5 +30,5 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
 //	@Query(nativeQuery=true, value = "SELECT TOP 1 * FROM my_order m JOIN statut s ON m.statut_id= s.id WHERE m.my_user_id= :paramId AND s.name ='commande en cours' ORDER BY m.id DESC")
 //	MyOrder selectLastMyOrderByUser(@Param("paramId")Long userId);
 	
-	
+	OrderItem findById(Long orderItemId);
 }

@@ -202,16 +202,22 @@ public class Product{
 		Float vatPrice = this.price;
 		try {
 			vatPrice += this.price * this.getVat().getRate();
-			
+			return vatPrice;
 		}catch(NullPointerException ex) {
-			
+			System.out.println(ex);
+			return 0f;
 		}
-		return vatPrice;
+		
 	}
 	
 	@Transient
 	public Float getTax() {
+		try {
 		return this.getVat().getRate();
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return 0f;
+		}
 	}
 
 	@Override

@@ -23,4 +23,5 @@ public interface MyOrderServiceInterface {
 	
 	public TheMessage createComboOrderItems(Long userId, Long comboId, List <Long> productsId);
 
+	public TheMessage deleteComboOrderItem(List <Long> orderItemIds) ;
 }

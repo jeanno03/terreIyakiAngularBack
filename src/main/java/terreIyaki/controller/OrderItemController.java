@@ -1,6 +1,7 @@
 package terreIyaki.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale.Category;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import terreIyaki.entity.Historisation;
 import terreIyaki.entity.MyOrder;
 import terreIyaki.entity.MyUser;
 import terreIyaki.entity.OrderItem;
@@ -67,13 +69,30 @@ public class OrderItemController implements Converter<String, Long> {
 
 	}	
 	
+	//méthode qui va supprimer tous les orders item du menu sélectionné
+	@RequestMapping(value = "/deleteComboOrderItem", method = RequestMethod.POST)
+	@CrossOrigin(origins = "*")
+	public TheMessage deleteComboOrderItem(@RequestBody List<LongClass> orderItemIdLongClass) {
+		
+		List <Long>orderItemsIdLong = new ArrayList();
+		
+
+		for(LongClass lc : orderItemIdLongClass) {
+			Long productIdLong = this.convert(lc);
+			orderItemsIdLong.add(productIdLong);
+	
+		}
+		
+		return myOrderServiceInterface.deleteComboOrderItem(orderItemsIdLong);
+	}
+	
 
 	//Méthode ==> une fois le menu sélectionné, le menu est ajouté à la commande ==> méthode createComboOrderItems
 	@RequestMapping(value = "/createComboOrderItems/{userId}/{comboId}", method = RequestMethod.PUT)
 	@CrossOrigin(origins = "*")
 	public TheMessage createComboOrderItems(@PathVariable String userId, @PathVariable String comboId, @RequestBody List<LongClass> productsId) {
 		
-		System.out.println("productsId.toString() : "+productsId.toString());
+
 		
 		//je converti tout en Long
 		Long userIdLong =  this.convert(userId);	
@@ -86,8 +105,9 @@ public class OrderItemController implements Converter<String, Long> {
 		for(LongClass lc : productsId) {
 			Long productIdLong = this.convert(lc);
 			productsIdLong.add(productIdLong);
-			System.out.println("productsIdLong.toString() : "+productsIdLong.toString());
+	
 		}
+		
 
 		//J'envoi en parametre dans la méthode createComboOrderItems
 		return myOrderServiceInterface.createComboOrderItems(userIdLong, comboIdLong, productsIdLong);
@@ -118,6 +138,11 @@ public class OrderItemController implements Converter<String, Long> {
 	        }
 	}
 	
+	
+	
+	
+	
+	
 	//méthode test non utlisé ==> exemple d'utilisation de POST
 	@RequestMapping(value = "/methodMyUser", method = RequestMethod.POST)
 	@CrossOrigin(origins = "*")
@@ -126,5 +151,8 @@ public class OrderItemController implements Converter<String, Long> {
 
 		System.out.println("ca marche!!!!!!! : "+u.getEmail());
 	}
+	
+	
+	
 	
 }
