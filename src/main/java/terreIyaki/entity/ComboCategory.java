@@ -107,6 +107,11 @@ public class ComboCategory {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
+	@Transient
+	public String getCategoryName() {
+		return this.getCategory().getName();
+	}
 
 	@Override
 	public String toString() {

@@ -1,11 +1,13 @@
 package terreIyaki.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import terreIyaki.entity.Combo;
 import terreIyaki.entity.MyOrder;
 import terreIyaki.entity.MyTable;
 import terreIyaki.entity.MyUser;
@@ -14,6 +16,7 @@ import terreIyaki.entity.OrderType;
 import terreIyaki.entity.Product;
 import terreIyaki.entity.Statut;
 import terreIyaki.entity.TheMessage;
+import terreIyaki.repository.ComboRepository;
 import terreIyaki.repository.MyOrderRepository;
 import terreIyaki.repository.MyTableRepository;
 import terreIyaki.repository.MyUserRepository;
@@ -49,12 +52,15 @@ public class MyOrderService implements MyOrderServiceInterface {
 	
 	@Autowired
 	private MyTableRepository mytableRepository;
+	
+	@Autowired
+	private ComboRepository comboRepository;
+	
 
 	@Override
 	public TheMessage createMyOrderMessage(String name, String email) {
 
-		// orderType01 est le orderType choisi cad sur place
-
+		// orderType01 est le orderType choisi 
 		OrderType orderType02 = orderTypeRepository.findByName(name);
 
 		// myUser01 est l'utilisateur qui effectue l'action
@@ -230,5 +236,42 @@ public class MyOrderService implements MyOrderServiceInterface {
 	}
 		return theMessageRepository.findByNumber(11);
 	}
+	
+	//méthode qui va créer l order item du combo, mess ==> 12
+	public TheMessage createComboOrderItems(Long userId, Long comboId, List <Long> productsId) {
+		
+		// je cherche la derniere commande
+		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+		
+		//je cherche le combo
+		Combo co01 = comboRepository.findById(comboId);
+		
+		//je recherche la liste de produit que j'ajoute à l'arrayList de produit
+		List<Product> li01 = new ArrayList();
+		for(Long l01 : productsId) {
+			li01.add(productRepository.findById(l01));
+		}
+
+		//je créé toutes les orderItem
+		//attention je ne rajoute que le prix du combo
+		//les prix des produits ne doivent pas être ajoutés
+		//pour le test j'ajoute le prix ttc une taxe a 1, quantité à 1
+		OrderItem o00 = new OrderItem(co01.getVatPrice(), 0f, 1, "menu ajouté");
+		
+		o00.setCombo(co01);
+		o00.setMyOrder(m01);
+		orderItemRepository.save(o00);
+		
+for(int i=0;i<productsId.size();i++) {
+Product po01 = productRepository.findById(productsId.get(i));
+	OrderItem oi01 = new OrderItem(0f, 0f, 1, "produit du menu ajouté");
+	oi01.setProduct(po01);
+	oi01.setMyOrder(m01);
+	orderItemRepository.save(oi01);
+}
+	
+		return theMessageRepository.findByNumber(12);
+	}
+	
 	
 }

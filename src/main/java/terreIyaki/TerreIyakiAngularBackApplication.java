@@ -100,7 +100,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		Category category102 = new Category("2 - Plats au choix");
 		Category category103 = new Category("3 - Desserts au choix");
 		
-		Combo combo01 = new Combo("Menu brochettes MB3", 8.19f, "assets/images/mb3.jpg",
+		Combo combo01 = new Combo("Menu brochettes MB3", 8.99f, "assets/images/mb3.jpg",
 				"assortiment de 5 brochettes ou 4 brochettes de roulés de boeuf au fromage, accompagnés d'une soupe Miso et d'une salade de chou");
 		
 		ComboCategory comboCategory01 = new ComboCategory(1);
@@ -134,7 +134,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		comboCategory01.setProducts(produts01);
 		comboCategory02.setProducts(produts02);
 		
-		Combo combo02 = new Combo("Menu M10", 15.45f, "assets/images/mb10.png",
+		Combo combo02 = new Combo("Menu M10", 16.99f, "assets/images/mb10.png",
 				"8 sushi saumon ou thon accompagnés d'une soupe Miso et d'une salade de chou... avec un excellent dessert");
 		
 		Set produts04 = new HashSet<Product>() {
@@ -270,6 +270,8 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		TheMessage theMessage10 = new TheMessage(10,"Produit retiré");
 		TheMessage theMessage11 = new TheMessage(11,"Ligne de produit supprimé");
 		
+		TheMessage theMessage12 = new TheMessage(12,"Menu ajouté");
+		
 		theMessage01.setCategoryMessage(categoryMessage01);
 		theMessage02.setCategoryMessage(categoryMessage02);
 		
@@ -287,6 +289,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		theMessage10.setCategoryMessage(categoryMessage01);
 		theMessage11.setCategoryMessage(categoryMessage01);
 		
+		theMessage12.setCategoryMessage(categoryMessage01);
 		
 		OrderType orderType01 = new OrderType ("Sur place");
 		OrderType orderType02 = new OrderType ("A emporter");
@@ -382,6 +385,8 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		theMessageRepository.save(theMessage09);
 		theMessageRepository.save(theMessage10);
 		theMessageRepository.save(theMessage11);
+		
+		theMessageRepository.save(theMessage12);
 		
 		orderTypeRepository.save(orderType01);
 		orderTypeRepository.save(orderType02);

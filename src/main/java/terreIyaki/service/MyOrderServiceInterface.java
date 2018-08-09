@@ -20,5 +20,7 @@ public interface MyOrderServiceInterface {
 	public TheMessage decrementeOrderItem(Long productId, Long userId);
 	
 	public TheMessage deleteOrderItem(Long productId, Long userId); 
+	
+	public TheMessage createComboOrderItems(Long userId, Long comboId, List <Long> productsId);
 
 }

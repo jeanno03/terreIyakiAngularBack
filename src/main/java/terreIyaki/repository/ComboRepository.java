@@ -14,4 +14,6 @@ public interface ComboRepository extends JpaRepository<Combo, Long>{
 	
 	Combo findByNameIgnoreCase(String name);
 	
+	Combo findById(Long id);
+	
 }
