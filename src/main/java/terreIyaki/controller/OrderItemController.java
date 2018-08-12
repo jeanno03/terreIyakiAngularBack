@@ -153,6 +153,17 @@ public class OrderItemController implements Converter<String, Long> {
 	}
 	
 	
+	@RequestMapping(value = "/confirmOrder", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public TheMessage confirmOrder(Long userId) {
+		return myOrderServiceInterface.confirmOrder(userId);
+		
+	}
 	
+	@RequestMapping(value = "/deleteOrder", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public TheMessage deleteOrder(Long userId) {
+		return myOrderServiceInterface.deleteOrder(userId);
+	}
 	
 }

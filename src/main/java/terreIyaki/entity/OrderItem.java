@@ -25,6 +25,7 @@ public class OrderItem {
 	private @NonNull float tax;
 	private int quantite;
 	private String comment;
+	private float vatComboPrice;
 	
 
 	private Product product;
@@ -40,14 +41,27 @@ public class OrderItem {
 	public OrderItem() {
 		super();
 	}
+	
+	
 
-	public OrderItem(float price, float tax, int quantite, String comment) {
+//	public OrderItem(float price, float tax, int quantite, String comment) {
+//		super();
+//		this.price = price;
+//		this.tax = tax;
+//		this.quantite=quantite;
+//		this.comment = comment;
+//	}
+
+	public OrderItem(float price, float tax, int quantite, String comment, float vatComboPrice) {
 		super();
 		this.price = price;
 		this.tax = tax;
-		this.quantite=quantite;
+		this.quantite = quantite;
 		this.comment = comment;
+		this.vatComboPrice = vatComboPrice;
 	}
+
+
 
 	public OrderItem(float price, float tax, String comment, Product product) {
 		super();
@@ -119,6 +133,15 @@ public class OrderItem {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+	public float getVatComboPrice() {
+		return vatComboPrice;
+	}
+
+	public void setVatComboPrice(float vatComboPrice) {
+		this.vatComboPrice = vatComboPrice;
+	}
+
 
 	@Transient
 	public Float getVatPrice() {

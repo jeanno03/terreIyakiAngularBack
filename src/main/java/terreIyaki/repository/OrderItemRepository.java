@@ -31,4 +31,6 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
 //	MyOrder selectLastMyOrderByUser(@Param("paramId")Long userId);
 	
 	OrderItem findById(Long orderItemId);
+	
+
 }

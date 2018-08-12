@@ -10,5 +10,7 @@ import terreIyaki.entity.Historisation;
 @CrossOrigin(origins = "http://localhost:4200")
 @Repository
 public interface HistorisationRepository extends JpaRepository<Historisation, Long>{
+	
+	Historisation findByMyOrderId(Long myOrderId);
 
 }

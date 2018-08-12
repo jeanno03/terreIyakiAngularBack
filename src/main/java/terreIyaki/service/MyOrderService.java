@@ -9,6 +9,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import terreIyaki.entity.Combo;
 import terreIyaki.entity.Historisation;
 import terreIyaki.entity.MyOrder;
@@ -55,7 +56,7 @@ public class MyOrderService implements MyOrderServiceInterface {
 	private OrderItemRepository orderItemRepository;
 	
 	@Autowired
-	private MyTableRepository mytableRepository;
+	private MyTableRepository myTableRepository;
 	
 	@Autowired
 	private ComboRepository comboRepository;
@@ -63,7 +64,7 @@ public class MyOrderService implements MyOrderServiceInterface {
 	@Autowired
 	private HistorisationRepository historisationRepository;
 	
-
+	//méthode de création de la commande
 	@Override
 	public TheMessage createMyOrderMessage(String name, String email) {
 
@@ -96,6 +97,7 @@ public class MyOrderService implements MyOrderServiceInterface {
 
 	}
 	
+	
 	//Méthode qui va ajouter le numéro de table à la commande
 	public TheMessage chooseTable(Long tableId, Long  userId) {
 		
@@ -103,7 +105,7 @@ public class MyOrderService implements MyOrderServiceInterface {
 		MyOrder mo01 = myOrderRepository.selectLastMyOrderByUser(userId);
 		
 		//on récupère la table
-		MyTable mt01 =  mytableRepository.findById(tableId);
+		MyTable mt01 =  myTableRepository.findById(tableId);
 		
 		//je rajoute le numéro de la table
 		mo01.setMyTable(mt01);
@@ -113,7 +115,7 @@ public class MyOrderService implements MyOrderServiceInterface {
 		mt01.setStatut(st01);
 		
 		//je persiste les changements
-		mytableRepository.save(mt01);
+		myTableRepository.save(mt01);
 		myOrderRepository.save(mo01);
 		
 		//je renvoi le message de succès
@@ -131,7 +133,7 @@ public class MyOrderService implements MyOrderServiceInterface {
 		// je cherche le produit via son id
 		Product p01 = productRepository.findById(productId);
 
-		// je cherche le statut numéro 7
+		// je cherche le statut numéro 7 "produit en cours de commande"
 		Statut s01 = statutRepository.findByNumero(7);
 
 		// je cherche la derniere commande
@@ -140,12 +142,13 @@ public class MyOrderService implements MyOrderServiceInterface {
 		String comment = "produit ajouté";
 		int quantite = 1;
 
+		try {
 		// on va chercher toutes les orderItems de la commande
 		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
 
 		if (li01.isEmpty()) {
 			// aucune commande donc je créé l orderItem
-			OrderItem o00 = new OrderItem(p01.getPrice(), p01.getTax(), quantite, comment);
+			OrderItem o00 = new OrderItem(p01.getPrice(), p01.getTax(), quantite, comment, 0f);
 
 			o00.setProduct(p01);
 			o00.setStatut(s01);
@@ -165,6 +168,8 @@ try {
 				//soit chercher =1
 				if (o01.getProduct().getId()==(productId)) {
 					o01.setQuantite(o01.getQuantite() + 1);
+//					Le statut deja à jour	
+//					o01.setStatut(s01);
 					orderItemRepository.save(o01);
 					chercher = 1;
 
@@ -178,7 +183,7 @@ try {
 			//si aucune incrémentation (chercher = 0) je créé l order Item
 			if(chercher == 0) {
 				 OrderItem o02 = new OrderItem(p01.getPrice(), p01.getTax(), quantite ,
-				 comment);
+				 comment, 0f);
 				 o02.setProduct(p01);
 				 o02.setStatut(s01);
 				 o02.setMyOrder(m01);
@@ -186,7 +191,10 @@ try {
 				 orderItemRepository.save(o02);
 			}
 		}
-
+		}catch(NullPointerException ex) {
+			//si liste de produit vide
+			System.out.println(ex);
+		}
 
 		return theMessageRepository.findByNumber(7);
 
@@ -266,7 +274,7 @@ try {
 	}
 	
 	
-	//********en cours ==> 	Statut statut12 = new Statut(12, "menu en cours de commande");
+
 	//set a faire pour menu et pour product
 	//méthode qui va créer l order item du combo, mess ==> 12
 	public TheMessage createComboOrderItems(Long userId, Long comboId, List <Long> productsId) {
@@ -279,11 +287,17 @@ try {
 		//je cherche le combo
 		Combo co01 = comboRepository.findById(comboId);
 		
+		// je cherche le statut numéro 7 "produit en cours de commande"
+		Statut s01 = statutRepository.findByNumero(7);
+		
+		//12, "menu en cours de commande";
+		Statut s02 = statutRepository.findByNumero(12);
+		
 		//je recherche la liste de produit que j'ajoute à l'arrayList de produit
-		List<Product> li01 = new ArrayList();
-		for(Long l01 : productsId) {
-			li01.add(productRepository.findById(l01));
-		}
+//		List<Product> li01 = new ArrayList();
+//		for(Long l01 : productsId) {
+//			li01.add(productRepository.findById(l01));
+//		}
 		
 		//cette list va contenir tous les ordersItems sauvegardé dans historisation
 		//menu et produits
@@ -294,12 +308,13 @@ try {
 		//attention je ne rajoute que le prix du combo
 		//les prix des produits ne doivent pas être ajoutés
 		//pour le test j'ajoute le prix ttc une taxe a 1, quantité à 1
-		OrderItem o00 = new OrderItem(co01.getVatPrice(), 0f, 1, "menu ajouté");
+		OrderItem o00 = new OrderItem(0f, 0f, 1, "menu ajouté", co01.getVatPrice());
 		
 		
 		orderItems01.add(o00);
 		o00.setCombo(co01);
 		o00.setMyOrder(m01);
+		o00.setStatut(s02);
 		orderItemRepository.save(o00);
 		
 		
@@ -307,9 +322,10 @@ try {
 		
 for(int i=0;i<productsId.size();i++) {
 Product po01 = productRepository.findById(productsId.get(i));
-	OrderItem oi01 = new OrderItem(0f, 0f, 1, "produit du menu ajouté");
+	OrderItem oi01 = new OrderItem(po01.getPrice(), po01.getTax(), 1, "produit du menu ajouté", 0f);
 	oi01.setProduct(po01);
 	oi01.setMyOrder(m01);
+	oi01.setStatut(s01);
 	//je rajoute tous les orderItem à Set orderItems01
 	orderItems01.add(oi01);
 	orderItemRepository.save(oi01);
@@ -356,6 +372,119 @@ historisationRepository.save(hi01);
 		return theMessageRepository.findByNumber(14);
 	}
 	
+	//mess 15
+	//on valide la commande
+	public TheMessage confirmOrder(Long userId) {
+		
+		// je cherche la derniere commande
+		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+		
+		// on va chercher toutes les orderItems de la commande
+		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
+		
+		//je modifie le statut de la commande
+		//Statut statut04 = new Statut(4, "commande validée");
+		Statut st01 = statutRepository.findByNumero(4);
+		
+		// je modifie tous les statut de orderItem
+		//Statut statut09 = new Statut(9, "produit en préparation");
+		Statut st02 = statutRepository.findByNumero(9);
+		
+		//Statut statut13 = new Statut(13, "menu commandé");
+		Statut st03 = statutRepository.findByNumero(13);
+		
+
+		//on remet le statut de la table a libre
+		try {
+		//on va chercher la table
+		MyTable my01=m01.getMyTable();
+		//Statut statut01 = new Statut(1, "libre");
+		Statut st04 = statutRepository.findByNumero(1);
+		my01.setStatut(st04);
+		myTableRepository.save(my01);
+		
+		}catch(NullPointerException ex) {
+			System.out.println(ex);		
+		}
+		
+		
+		m01.setStatut(st01);
+		myOrderRepository.save(m01);
+		
+		for (OrderItem o01 : li01) {
+
+			try {
+				//si produit je met statut 9
+				o01.setStatut(st02);
+				
+				orderItemRepository.save(o01);
+				
+			}catch(NullPointerException ex)	{
+				System.out.println(ex);
+				//si produit inexistant ==> c est un menu
+				//je met satu 13
+				o01.setStatut(st03);
+				orderItemRepository.save(o01);
+			}
+	}
+		return theMessageRepository.findByNumber(15);
+	}
+	
+	//Je supprime les orderItem et l'historisation
+	//je modifie le statut de la commande
+	//retour mess 17
+	public TheMessage deleteOrder(Long userId) {
+		// je cherche la derniere commande
+		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+		
+		//on remet le statut de la table a libre
+		try {
+			//on va chercher la table
+			MyTable my01=m01.getMyTable();
+			//Statut statut01 = new Statut(1, "libre");
+			Statut st04 = statutRepository.findByNumero(1);
+			my01.setStatut(st04);
+			myTableRepository.save(my01);
+			
+			}catch(NullPointerException ex) {
+				System.out.println(ex);		
+			}
+		
+
+		
+		//on va chercher l'historisation
+		Historisation hi01 = historisationRepository.findByMyOrderId(m01.getId());
+		
+		//je supprime les orderItem, historisation, myOrder
+		
+		try {
+		// on va chercher toutes les orderItems de la commande
+		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
+		
+		for(OrderItem or01:li01) {
+			orderItemRepository.delete(or01);
+		}
+		
+		}catch (NullPointerException ex) {
+			System.out.println(ex);
+		}
+		
+		
+		historisationRepository.delete(hi01);
+		
+
+		//suppression impossible a cause de la dépendance de la table
+		//on change le statut de la commande
+		
+//		Statut statut06 = new Statut(6, "commande annulée");
+		Statut st05 = statutRepository.findByNumero(6);
+		m01.setStatut(st05);
+		myOrderRepository.save(m01);
+
+		
+		return theMessageRepository.findByNumber(17);
+		
+	}
 	
 	
 }

@@ -221,11 +221,11 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		table03.setStatut(statut01);
 		table04.setStatut(statut01);
 		table05.setStatut(statut01);
-		table06.setStatut(statut01);
+		table06.setStatut(statut02);
 		table07.setStatut(statut01);
 		table08.setStatut(statut01);
-		table09.setStatut(statut02);
-		table10.setStatut(statut02);
+		table09.setStatut(statut01);
+		table10.setStatut(statut01);
 		
 		
 		MyUser myUser01 = new MyUser("jeannory.phou@gmail.com","theBoss", "jeannory", "phou");
@@ -276,6 +276,11 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		TheMessage theMessage12 = new TheMessage(12,"Menu ajouté");
 		TheMessage theMessage14 = new TheMessage(14,"Menu supprimé");
 		
+		TheMessage theMessage15 = new TheMessage(15,"Commande validée");
+		
+		TheMessage theMessage16 = new TheMessage(16,"Vous devez choisir une table disponible");
+		TheMessage theMessage17 = new TheMessage(17,"Votre commande a été annulée");
+		
 		theMessage01.setCategoryMessage(categoryMessage01);
 		theMessage02.setCategoryMessage(categoryMessage02);
 		
@@ -294,6 +299,12 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		theMessage11.setCategoryMessage(categoryMessage01);
 		
 		theMessage12.setCategoryMessage(categoryMessage01);
+		
+		theMessage14.setCategoryMessage(categoryMessage01);
+		theMessage15.setCategoryMessage(categoryMessage01);
+		theMessage16.setCategoryMessage(categoryMessage01);
+		theMessage17.setCategoryMessage(categoryMessage01);
+
 		
 		OrderType orderType01 = new OrderType ("Sur place");
 		OrderType orderType02 = new OrderType ("A emporter");
@@ -395,6 +406,11 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 		
 		theMessageRepository.save(theMessage12);
 		theMessageRepository.save(theMessage14);
+		
+		theMessageRepository.save(theMessage15);
+		
+		theMessageRepository.save(theMessage16);
+		theMessageRepository.save(theMessage17);
 		
 		orderTypeRepository.save(orderType01);
 		orderTypeRepository.save(orderType02);
