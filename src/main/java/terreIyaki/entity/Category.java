@@ -20,10 +20,9 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"name"}))
-
-    public class Category {
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"name"}))
+public class Category {
 
 	private Long id;
 	private @NonNull String name;
@@ -42,18 +41,18 @@ uniqueConstraints=
 		this.name = name;
 	}
 
-//	public Category(String name, Menu menu) {
-//		super();
-//		this.name = name;
-//		this.menu = menu;
-//	}
+	//	public Category(String name, Menu menu) {
+	//		super();
+	//		this.name = name;
+	//		this.menu = menu;
+	//	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -62,7 +61,7 @@ uniqueConstraints=
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -90,7 +89,7 @@ uniqueConstraints=
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
 	public Set<ComboCategory> getComboCategories() {

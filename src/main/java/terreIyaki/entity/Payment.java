@@ -58,7 +58,7 @@ public class Payment {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -93,7 +93,7 @@ public class Payment {
 	public void setMyOrder(MyOrder myOrder) {
 		this.myOrder = myOrder;
 	}
-	
+
 	@JsonIgnore
 	@OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
 	public Historisation getHistorisation() {

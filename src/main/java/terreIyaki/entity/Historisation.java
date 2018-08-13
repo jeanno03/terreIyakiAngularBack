@@ -3,7 +3,6 @@ package terreIyaki.entity;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,11 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.NonNull;
 
@@ -28,13 +24,13 @@ public class Historisation {
 	private MyUser myUser;
 
 	private MyOrder myOrder;
-	
+
 	private Set<OrderItem> orderItems;
-	
+
 	private OrderType orderType;
-	
+
 	private Payment payment;
-	
+
 	private Statut statut;
 
 	public Historisation() {
@@ -90,7 +86,7 @@ public class Historisation {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -128,19 +124,19 @@ public class Historisation {
 		this.myOrder = myOrder;
 	}
 
-	
-	
-	
-//	@ManyToOne
-//	@JoinColumn(name = "order_item_id")
-//	public OrderItem getOrderItem() {
-//		return orderItem;
-//	}
-//
-//	public void setOrderItem(OrderItem orderItem) {
-//		this.orderItem = orderItem;
-//	}
-	
+
+
+
+	//	@ManyToOne
+	//	@JoinColumn(name = "order_item_id")
+	//	public OrderItem getOrderItem() {
+	//		return orderItem;
+	//	}
+	//
+	//	public void setOrderItem(OrderItem orderItem) {
+	//		this.orderItem = orderItem;
+	//	}
+
 	@ManyToMany
 	@JoinColumn
 	public Set<OrderItem> getOrderItems() {
@@ -160,7 +156,7 @@ public class Historisation {
 	public void setOrderType(OrderType orderType) {
 		this.orderType = orderType;
 	}
-	
+
 	@OneToOne
 	@JoinColumn(name = "payment_id")
 	public Payment getPayment() {
@@ -170,7 +166,7 @@ public class Historisation {
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
-	
+
 	@OneToOne
 	@JoinColumn(name = "statut_id")
 	public Statut getStatut() {

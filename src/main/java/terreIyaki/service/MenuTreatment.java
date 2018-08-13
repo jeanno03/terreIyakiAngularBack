@@ -9,17 +9,17 @@ import terreIyaki.repository.ProductRepository;
 import terreIyaki.entity.*;
 
 public class MenuTreatment {
-	
+
 	@Autowired
 	private ProductRepository productRepository;
 
 	@Autowired	
 	private CategoryRepository CategoryRepository;
-	
+
 	@Autowired
 	private ComboRepository comboRepository;
 
 	@Autowired
 	private ComboCategoryRepository comboCategoryRepository;
-	
+
 }

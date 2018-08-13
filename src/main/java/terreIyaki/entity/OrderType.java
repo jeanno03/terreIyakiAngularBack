@@ -19,73 +19,73 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"name"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"name"}))
 public class OrderType {
-	
-private Long id;
 
-private @NonNull String name;
+	private Long id;
 
-private Set<MyOrder> myOrders;
+	private @NonNull String name;
 
-private Historisation historisation;
+	private Set<MyOrder> myOrders;
 
-public OrderType() {
-	super();
-}
+	private Historisation historisation;
 
-public OrderType(String name) {
-	super();
-	this.name = name;
-}
+	public OrderType() {
+		super();
+	}
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-public Long getId() {
-	return id;
-}
+	public OrderType(String name) {
+		super();
+		this.name = name;
+	}
 
-@Transient
-public Long getTheId() {
-	return id;
-}
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
 
-public void setId(Long id) {
-	this.id = id;
-}
+	@Transient
+	public Long getTheId() {
+		return id;
+	}
 
-public String getName() {
-	return name;
-}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-public void setName(String name) {
-	this.name = name;
-}
+	public String getName() {
+		return name;
+	}
 
-@JsonIgnore
-@OneToMany(mappedBy="orderType", cascade = CascadeType.ALL)
-public Set<MyOrder> getMyOrders() {
-	return myOrders;
-}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-public void setMyOrders(Set<MyOrder> myOrders) {
-	this.myOrders = myOrders;
-}
+	@JsonIgnore
+	@OneToMany(mappedBy="orderType", cascade = CascadeType.ALL)
+	public Set<MyOrder> getMyOrders() {
+		return myOrders;
+	}
 
-@JsonIgnore
-@OneToOne(mappedBy ="orderType", cascade = CascadeType.ALL)
-public Historisation getHistorisation() {
-	return historisation;
-}
+	public void setMyOrders(Set<MyOrder> myOrders) {
+		this.myOrders = myOrders;
+	}
 
-public void setHistorisation(Historisation historisation) {
-	this.historisation = historisation;
-}
+	@JsonIgnore
+	@OneToOne(mappedBy ="orderType", cascade = CascadeType.ALL)
+	public Historisation getHistorisation() {
+		return historisation;
+	}
 
-@Override
-public String toString() {
-	return "\nOrderType [id=" + id + ", name=" + name + "]";
-}
+	public void setHistorisation(Historisation historisation) {
+		this.historisation = historisation;
+	}
+
+	@Override
+	public String toString() {
+		return "\nOrderType [id=" + id + ", name=" + name + "]";
+	}
 
 }

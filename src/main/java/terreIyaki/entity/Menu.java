@@ -18,16 +18,16 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"name"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"name"}))
 public class Menu {
-	
+
 	private Long id;
-	
+
 	private @NonNull String name;
-	
+
 	private Set<Combo> combos;
-	
+
 	private Set<Category>categories;
 
 	public Menu() {
@@ -44,7 +44,7 @@ public class Menu {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -53,7 +53,7 @@ public class Menu {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -88,5 +88,5 @@ public class Menu {
 	}
 
 
-		
+
 }

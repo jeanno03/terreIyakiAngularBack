@@ -11,11 +11,11 @@ import terreIyaki.entity.TheMessage;
 @CrossOrigin(origins = "http://localhost:4200")
 @Repository
 public interface TheMessageRepository extends JpaRepository<TheMessage, Long>{
-	
+
 	TheMessage findByNumber(int number);
-	
+
 	//TheMessage createOrderItem(Long productId, Long userId);
-	
-	
+
+
 
 }

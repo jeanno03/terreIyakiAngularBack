@@ -18,12 +18,12 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"tableNumber"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"tableNumber"}))
 public class MyTable {
 
 	private Long id;
-	
+
 	private @NonNull int tableNumber;
 
 	private MyOrder myOrder;
@@ -50,7 +50,7 @@ public class MyTable {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -59,7 +59,7 @@ public class MyTable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public int getTableNumber() {
 		return tableNumber;
 	}
@@ -87,11 +87,11 @@ public class MyTable {
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
-	
+
 	@Transient
 	public String getStatutName() {
 		try {
-		return this.getStatut().getName();
+			return this.getStatut().getName();
 		}catch(NullPointerException ex) {
 			System.out.println(ex);
 			return "void";

@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -19,12 +18,12 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"name"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"name"}))
 public class MyGrant {
 
 	private Long id;
-	
+
 	private @NonNull String name;
 
 	private Set<MyUser> myUsers;
@@ -49,7 +48,7 @@ public class MyGrant {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -58,7 +57,7 @@ public class MyGrant {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

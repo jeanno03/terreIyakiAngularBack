@@ -18,15 +18,15 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"label","rate"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"label","rate"}))
 public class Vat {
-	
+
 	private Long id;
 	private @NonNull String label;
 	private @NonNull float rate;
 	private Set<Product> products;
-	
+
 	public Vat() {
 		super();
 	}
@@ -42,7 +42,7 @@ public class Vat {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -67,7 +67,7 @@ public class Vat {
 	public void setRate(float rate) {
 		this.rate = rate;
 	}
-		
+
 	@JsonIgnore
 	@OneToMany (mappedBy = "vat", cascade = CascadeType.ALL)
 	public Set<Product> getProducts() {

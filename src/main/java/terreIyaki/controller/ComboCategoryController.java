@@ -11,10 +11,10 @@ import terreIyaki.repository.ComboCategoryRepository;
 
 @RestController
 public class ComboCategoryController {
-	
+
 	private ComboCategoryRepository comboCategoryRepository;
 
-	 	public ComboCategoryController(ComboCategoryRepository comboCategoryRepository) {
+	public ComboCategoryController(ComboCategoryRepository comboCategoryRepository) {
 		super();
 		this.comboCategoryRepository = comboCategoryRepository;
 	}

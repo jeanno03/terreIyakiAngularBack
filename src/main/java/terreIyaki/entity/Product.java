@@ -31,13 +31,13 @@ public class Product{
 	private String description;
 
 	private Set<ComboCategory> comboCategories;
-	
+
 	private Category category;
 
 	private Vat vat;
-	
+
 	private Statut statut;
-	
+
 	private Set<OrderItem>orderItems;
 
 	public Product() {
@@ -51,7 +51,7 @@ public class Product{
 		this.picture = picture;
 		this.description = description;
 	}	
-	
+
 	public Product(String name, float price, String picture, String description, Category category) {
 		super();
 		this.name = name;
@@ -103,7 +103,7 @@ public class Product{
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -154,8 +154,8 @@ public class Product{
 	public void setComboCategories(Set<ComboCategory> comboCategories) {
 		this.comboCategories = comboCategories;
 	}
-	
-	
+
+
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
@@ -196,7 +196,7 @@ public class Product{
 	public void setOrderItems(Set<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
-	
+
 	@Transient
 	public Float getVatPrice() {
 		Float vatPrice = this.price;
@@ -207,13 +207,13 @@ public class Product{
 			System.out.println(ex);
 			return 0f;
 		}
-		
+
 	}
-	
+
 	@Transient
 	public Float getTax() {
 		try {
-		return this.getVat().getRate();
+			return this.getVat().getRate();
 		}catch(NullPointerException ex) {
 			System.out.println(ex);
 			return 0f;

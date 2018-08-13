@@ -18,7 +18,7 @@ import terreIyaki.entity.Category;
 @RestController
 @CrossOrigin("*")
 public class CategoryController {
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
 
@@ -26,18 +26,18 @@ public class CategoryController {
 		super();
 		this.categoryRepository = categoryRepository;
 	}
-	
+
 	@RequestMapping(value = "/getCategoryByName", method = RequestMethod.GET)
 	public List<Category> getCategoryByName(@RequestParam(name="name", defaultValue="Plats")String name){
 		return categoryRepository.findByNameIgnoreCase(name);
 	}
-	
+
 	@GetMapping("/getCategoryById")
 	@CrossOrigin(origins = "*")
 	public Category getCategoryById() {
-		
+
 		return categoryRepository.findOne(2l);
 	}
-	
-	
+
+
 }

@@ -15,16 +15,16 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"number"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"number"}))
 public class TheMessage {
-	
+
 	private Long id;
 	private @NonNull int number;
 	private @NonNull String theMessage;
-	
+
 	private CategoryMessage categoryMessage;
-	
+
 	public TheMessage() {
 		super();
 	}
@@ -34,13 +34,13 @@ public class TheMessage {
 		this.number = number;
 		this.theMessage = theMessage;
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -65,7 +65,7 @@ public class TheMessage {
 	public void setTheMessage(String theMessage) {
 		this.theMessage = theMessage;
 	}
-	
+
 	@ManyToOne
 	@JoinColumn(name = "category_message_id")
 	public CategoryMessage getCategoryMessage() {
@@ -75,18 +75,18 @@ public class TheMessage {
 	public void setCategoryMessage(CategoryMessage categoryMessage) {
 		this.categoryMessage = categoryMessage;
 	}
-	
-//	@Transient
-//	public String getCategoryMessageName() {
-//		return this.getCategoryMessage().getName();
-//	}
+
+	//	@Transient
+	//	public String getCategoryMessageName() {
+	//		return this.getCategoryMessage().getName();
+	//	}
 
 	@Override
 	public String toString() {
 		return "\nTheMessage [id=" + id + ", number=" + number + ", theMessage=" + theMessage + "]";
 	}
-	
-	
 
-	
+
+
+
 }

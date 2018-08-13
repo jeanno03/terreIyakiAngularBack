@@ -11,14 +11,14 @@ import terreIyaki.repository.MyTableRepository;
 
 @RestController
 public class MyTableController {
-	
+
 	private MyTableRepository myTableRepository;
 
 	public MyTableController(MyTableRepository myTableRepository) {
 		super();
 		this.myTableRepository = myTableRepository;
 	}
-	
+
 	@RequestMapping(value = "/getMyTableById", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public MyTable getComboCategoryById(@RequestParam(name="id", defaultValue="0L")Long id) {

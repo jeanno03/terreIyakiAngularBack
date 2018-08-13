@@ -11,9 +11,9 @@ import terreIyaki.entity.Combo;
 @CrossOrigin(origins = "http://localhost:4200")
 @Repository
 public interface ComboRepository extends JpaRepository<Combo, Long>{
-	
+
 	Combo findByNameIgnoreCase(String name);
-	
+
 	Combo findById(Long id);
-	
+
 }

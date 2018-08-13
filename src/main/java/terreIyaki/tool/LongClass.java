@@ -1,7 +1,7 @@
 package terreIyaki.tool;
 
 public class LongClass {
-	
+
 	private Long idLong;
 
 	public LongClass() {
@@ -29,6 +29,6 @@ public class LongClass {
 
 
 
-	
+
 
 }

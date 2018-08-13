@@ -15,9 +15,9 @@ import terreIyaki.repository.*;
 
 @RestController
 public class ProductController {
-	
+
 	private ProductRepository productRepository;
-	
+
 	public ProductController(ProductRepository productRepository) {
 		super();
 		this.productRepository = productRepository;
@@ -28,14 +28,14 @@ public class ProductController {
 	public Collection<Product> getProducts() {
 		return productRepository.findAll();
 	}	
-	
+
 	//attention cette requete va retourner plusieurs objects
 	@RequestMapping(value = "/getProductByName", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public List<Product> getProductByName(@RequestParam(name="name", defaultValue="")String name){
 		return productRepository.findByNameIgnoreCase(name);
 	}
-	
+
 	@RequestMapping(value = "/getProductById", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public Product findProductbyId(Long id) {

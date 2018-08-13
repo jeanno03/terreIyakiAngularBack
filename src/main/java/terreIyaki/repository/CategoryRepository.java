@@ -14,6 +14,6 @@ import terreIyaki.entity.Category;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-	 List<Category> findByNameIgnoreCase(String name);
-	
+	List<Category> findByNameIgnoreCase(String name);
+
 }

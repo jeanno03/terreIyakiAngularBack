@@ -20,8 +20,8 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"name"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"name"}))
 public class Combo {
 
 	private Long id;
@@ -68,13 +68,13 @@ public class Combo {
 		this.description = description;
 		this.menu = menu;
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -83,7 +83,7 @@ public class Combo {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

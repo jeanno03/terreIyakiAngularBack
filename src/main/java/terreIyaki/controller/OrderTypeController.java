@@ -13,9 +13,9 @@ import terreIyaki.service.MyOrderServiceInterface;
 
 @RestController
 public class OrderTypeController {
-	
+
 	private OrderTypeRepository orderTypeRepository;
-	
+
 	@Autowired
 	private MyOrderServiceInterface myOrderServiceInterface;
 
@@ -23,27 +23,27 @@ public class OrderTypeController {
 		super();
 		this.orderTypeRepository = orderTypeRepository;
 	}
-	
+
 	//on choisi si on prend a emporter ou sur place
 	@RequestMapping(value = "/getOrderTypeByName", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public OrderType getOrderTypeByName(String name) {
 		return orderTypeRepository.findByName(name);
 	}
-	
+
 	//on ouvre une commande a emporter ou sur place
 	@RequestMapping(value = "/selectOrder", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public TheMessage selectOrder(String name, String email) {
 		return myOrderServiceInterface.createMyOrderMessage(name, email);		
 	}	
-	
+
 	//on ajoute la table a la commande sur place
 	@RequestMapping(value = "/chooseTable", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public TheMessage chooseTable(Long tableId, Long  userId) {
 		return myOrderServiceInterface.chooseTable(tableId, userId);
 	}
-	
+
 
 }

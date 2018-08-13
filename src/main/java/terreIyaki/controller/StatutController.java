@@ -10,9 +10,9 @@ import terreIyaki.repository.StatutRepository;
 
 @RestController
 public class StatutController {
-	
+
 	private StatutRepository statutRepository;
-	
+
 	public StatutController(StatutRepository statutRepository) {
 		super();
 		this.statutRepository = statutRepository;
@@ -28,17 +28,17 @@ public class StatutController {
 	@CrossOrigin(origins = "*")
 	Statut getStatutByNumero(int id) {
 		return statutRepository.findByNumero(id);
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -2,7 +2,6 @@ package terreIyaki.entity;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,17 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.NonNull;
 
 @Entity
 public class ComboCategory {
-	
+
 	private Long id;
 	private @NonNull int number;
 	private Set<Product> products;
@@ -50,20 +45,18 @@ public class ComboCategory {
 		this.number = number;
 		this.category = category;
 	}
-	
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -76,8 +69,8 @@ public class ComboCategory {
 		this.number = number;
 	}
 
-//	@JsonIgnore
-//	@OneToMany(mappedBy="comboCategory", cascade = CascadeType.ALL)
+	//	@JsonIgnore
+	//	@OneToMany(mappedBy="comboCategory", cascade = CascadeType.ALL)
 	@ManyToMany
 	@JoinColumn(name = "product_id")
 	public Set<Product> getProducts() {
@@ -107,15 +100,15 @@ public class ComboCategory {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
+
 	@Transient
 	public String getCategoryName() {
 		try {
-		return this.getCategory().getName();
-	}catch(NullPointerException ex) {
-		System.out.println(ex);
-		return "void";
-	}
+			return this.getCategory().getName();
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return "void";
+		}
 	}
 
 	@Override

@@ -19,14 +19,14 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"name","numero"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"name","numero"}))
 public class Statut {
-	
+
 	private Long id;
-	
+
 	private @NonNull int numero;
-	
+
 	private @NonNull String name;
 
 	private Set<Product> products;
@@ -61,11 +61,11 @@ public class Statut {
 	public Long getTheId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public int getNumero() {
 		return numero;
 	}

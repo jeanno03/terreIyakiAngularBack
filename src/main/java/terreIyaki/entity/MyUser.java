@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
@@ -21,26 +20,26 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"email","login"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"email","login"}))
 public class MyUser {
-	
+
 	private Long id;
 	private @NonNull String email;
 	private @NonNull String login;
 	private String firstName;
 	private String lastName;
-	
+
 	private Set<MyGrant> myGrants;
-	
+
 	private Set<MyOrder> myOrders;
-	
+
 	private Set<Historisation> historisations;
-	
+
 	public MyUser() {
 		super();
 	}
-	
+
 	public MyUser(String email, String login, String firstName, String lastName) {
 		this();
 		this.email = email;
@@ -48,13 +47,13 @@ public class MyUser {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -67,7 +66,7 @@ public class MyUser {
 	public String getEmail() {
 		return email;
 	}
-	
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -95,7 +94,7 @@ public class MyUser {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	@ManyToMany
 	@JoinColumn(name = "my_grant_login")
 	public Set<MyGrant> getMyGrants() {
@@ -105,7 +104,7 @@ public class MyUser {
 	public void setMyGrants(Set<MyGrant> myGrants) {
 		this.myGrants = myGrants;
 	}
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "myUser", cascade = CascadeType.ALL)
 	public Set<MyOrder> getMyOrders() {
@@ -115,7 +114,7 @@ public class MyUser {
 	public void setMyOrders(Set<MyOrder> myOrders) {
 		this.myOrders = myOrders;
 	}
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "myUser", cascade = CascadeType.ALL)
 	public Set<Historisation> getHistorisations() {

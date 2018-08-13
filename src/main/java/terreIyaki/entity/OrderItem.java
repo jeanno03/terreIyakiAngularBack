@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,31 +25,31 @@ public class OrderItem {
 	private int quantite;
 	private String comment;
 	private float vatComboPrice;
-	
+
 
 	private Product product;
 
 	private Set<Historisation> historisations;
 
 	private Statut statut;
-	
+
 	private Combo combo;
-	
+
 	private MyOrder myOrder;
 
 	public OrderItem() {
 		super();
 	}
-	
-	
 
-//	public OrderItem(float price, float tax, int quantite, String comment) {
-//		super();
-//		this.price = price;
-//		this.tax = tax;
-//		this.quantite=quantite;
-//		this.comment = comment;
-//	}
+
+
+	//	public OrderItem(float price, float tax, int quantite, String comment) {
+	//		super();
+	//		this.price = price;
+	//		this.tax = tax;
+	//		this.quantite=quantite;
+	//		this.comment = comment;
+	//	}
 
 	public OrderItem(float price, float tax, int quantite, String comment, float vatComboPrice) {
 		super();
@@ -92,7 +91,7 @@ public class OrderItem {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -146,9 +145,9 @@ public class OrderItem {
 	@Transient
 	public Float getVatPrice() {
 		try {
-		float vatPrice=0f;
-		vatPrice = this.price + (this.price *this.tax);
-		return vatPrice;
+			float vatPrice=0f;
+			vatPrice = this.price + (this.price *this.tax);
+			return vatPrice;
 		}catch(NullPointerException ex) {
 			System.out.println(ex);
 			return 0f;
@@ -164,40 +163,40 @@ public class OrderItem {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
+
 	@Transient
 	public String getProductName() {
 		try {
-		return this.getProduct().getName();
+			return this.getProduct().getName();
 		}catch(NullPointerException ex) {
 			System.out.println(ex);
 			return "menu";
 		}
-	
+
 	}
-		@Transient
-		public String getComboName() {
-			try {
+	@Transient
+	public String getComboName() {
+		try {
 			return this.getCombo().getName();
-			}catch(NullPointerException ex) {
-				System.out.println(ex);
-				return "carte";
-			}
-			
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return "carte";
+		}
+
 	}
 
 	@Transient
 	public Long getIdProduct() {
 		try {
-		return this.getProduct().getId();
+			return this.getProduct().getId();
 		}catch(NullPointerException ex) {
 			System.out.println(ex);
 			return 0L;
 		}
-		
+
 	}
 
-	
+
 	@JsonIgnore
 	@ManyToMany(mappedBy = "orderItems", cascade = CascadeType.ALL)
 	public Set<Historisation> getHistorisations() {
@@ -217,7 +216,7 @@ public class OrderItem {
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
-	
+
 	@ManyToOne
 	@JoinColumn(name = "myOrder_id")
 	public MyOrder getMyOrder() {
@@ -237,17 +236,17 @@ public class OrderItem {
 	public void setCombo(Combo combo) {
 		this.combo = combo;
 	}
-	
+
 	//inutile?
-//	@Transient
-//	public Long getComboId(){
-//		try {
-//		return this.getCombo().getId();
-//		}catch(NullPointerException ex) {
-//			System.out.println(ex);
-//			return 0l;
-//		}
-//	}
+	//	@Transient
+	//	public Long getComboId(){
+	//		try {
+	//		return this.getCombo().getId();
+	//		}catch(NullPointerException ex) {
+	//			System.out.println(ex);
+	//			return 0l;
+	//		}
+	//	}
 
 	@Override
 	public String toString() {

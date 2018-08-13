@@ -13,6 +13,6 @@ import terreIyaki.entity.CategoryMessage;
 @Repository
 public interface CategoryMessageRepository extends JpaRepository<CategoryMessage, Long>{
 
-	
-	
+
+
 }

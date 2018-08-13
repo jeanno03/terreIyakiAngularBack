@@ -18,12 +18,12 @@ import lombok.NonNull;
 
 @Entity
 @Table(
-uniqueConstraints=
-@UniqueConstraint(columnNames={"name"}))
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"name"}))
 public class PaymentOption {
-	
+
 	private Long id;
-	
+
 	private @NonNull String name;
 
 	private Set<Payment> payments;
@@ -42,7 +42,7 @@ public class PaymentOption {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -51,7 +51,7 @@ public class PaymentOption {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

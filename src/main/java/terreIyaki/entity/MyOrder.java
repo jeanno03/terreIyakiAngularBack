@@ -35,7 +35,7 @@ public class MyOrder {
 	private Set<Payment> payment;
 
 	private Statut statut;
-	
+
 	private Set<OrderItem> orderItems;
 
 	public MyOrder() {
@@ -76,7 +76,7 @@ public class MyOrder {
 	public Long getId() {
 		return id;
 	}
-	
+
 	@Transient
 	public Long getTheId() {
 		return id;
@@ -143,7 +143,7 @@ public class MyOrder {
 	public void setPayment(Set<Payment> payment) {
 		this.payment = payment;
 	}
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "myOrder", cascade = CascadeType.ALL)
 	public Set<OrderItem> getOrderItems() {
