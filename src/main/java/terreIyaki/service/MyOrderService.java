@@ -1,5 +1,6 @@
 package terreIyaki.service;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -98,13 +99,17 @@ public class MyOrderService implements MyOrderServiceInterface {
 
 
 	//Méthode qui va ajouter le numéro de table à la commande
-	public TheMessage chooseTable(Long tableId, Long  userId) {
+	public TheMessage chooseTable(int tableNumber, Long  userId) {
 
 		//on récupère la derniere commande de l'user
 		MyOrder mo01 = myOrderRepository.selectLastMyOrderByUser(userId);
 
 		//on récupère la table
-		MyTable mt01 =  myTableRepository.findById(tableId);
+//		MyTable mt01 =  myTableRepository.findById(tableId);
+		
+		//l'algo a été modifié car en angular j'avais besoin du numéro de table en parametre
+		MyTable mt01 =  myTableRepository.findByTableNumber(tableNumber);
+		
 
 		//je rajoute le numéro de la table
 		mo01.setMyTable(mt01);
@@ -492,5 +497,15 @@ public class MyOrderService implements MyOrderServiceInterface {
 
 	}
 
+	public MyOrder getLastOrderByUser(Long userId)throws SQLException{
+		
+		
+		
+		
+		
+		
+		
+		return myOrderRepository.selectLastMyOrderByUser(userId);
+	}
 
 }

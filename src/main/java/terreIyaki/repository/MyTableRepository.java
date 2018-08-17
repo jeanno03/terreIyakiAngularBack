@@ -12,5 +12,7 @@ import terreIyaki.entity.MyTable;
 public interface MyTableRepository extends JpaRepository<MyTable, Long>{
 
 	MyTable findById(Long id) ;
+	
+	MyTable findByTableNumber(int tableNumber) ;
 
 }

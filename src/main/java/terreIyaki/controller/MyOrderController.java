@@ -1,7 +1,10 @@
 package terreIyaki.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,9 +40,20 @@ public class MyOrderController {
 
 	@RequestMapping(value = "/selectLastMyOrderByUser", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
-	public MyOrder selectLastMyOrderByUser(Long userId){
-		return myOrderRepository.selectLastMyOrderByUser(userId);
+	public MyOrder selectLastMyOrderByUser(Long userId) throws SQLException{
+		try{
+//			return myOrderServiceInterface.getLastOrderByUser(userId);
+			return myOrderRepository.selectLastMyOrderByUser(userId);
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}
+		return null;
+
 	}
+	
+
+
+	
 
 
 }
