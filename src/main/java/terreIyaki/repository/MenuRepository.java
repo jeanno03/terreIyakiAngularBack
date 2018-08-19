@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import terreIyaki.entity.Menu;
 @RepositoryRestResource
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Repository
 public interface MenuRepository extends JpaRepository <Menu, Long>{
 

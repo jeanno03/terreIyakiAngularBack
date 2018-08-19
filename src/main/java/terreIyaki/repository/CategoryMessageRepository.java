@@ -9,7 +9,7 @@ import terreIyaki.entity.CategoryMessage;
 
 
 @RepositoryRestResource
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Repository
 public interface CategoryMessageRepository extends JpaRepository<CategoryMessage, Long>{
 

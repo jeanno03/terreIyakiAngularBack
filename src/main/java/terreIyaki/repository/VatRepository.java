@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import terreIyaki.entity.Vat;
 
 @RepositoryRestResource
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Repository
 public interface VatRepository extends JpaRepository<Vat, Long>{
 

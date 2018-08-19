@@ -11,6 +11,7 @@ import terreIyaki.repository.MyUserRepository;
 import terreIyaki.service.MyUserServiceInterface;
 
 @RestController
+@CrossOrigin("*")
 public class MyUserController {
 
 	private MyUserRepository myUserRepository;
@@ -34,7 +35,7 @@ public class MyUserController {
 
 	@RequestMapping(value = "/getUserByLogin", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
-	MyUser getUserByLogin(String login) {
+	public MyUser getUserByLogin(String login) {
 		return myUserRepository.getUserByLogin(login);
 
 	}

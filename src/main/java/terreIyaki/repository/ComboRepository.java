@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import terreIyaki.entity.Combo;
 
 @RepositoryRestResource
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Repository
 public interface ComboRepository extends JpaRepository<Combo, Long>{
 

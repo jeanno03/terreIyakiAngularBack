@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import terreIyaki.entity.Historisation;
 @RepositoryRestResource
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Repository
 public interface HistorisationRepository extends JpaRepository<Historisation, Long>{
 

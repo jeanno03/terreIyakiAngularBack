@@ -10,6 +10,7 @@ import terreIyaki.entity.MyTable;
 import terreIyaki.repository.MyTableRepository;
 
 @RestController
+@CrossOrigin("*")
 public class MyTableController {
 
 	private MyTableRepository myTableRepository;

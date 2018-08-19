@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 import terreIyaki.entity.PaymentOption;
 @RepositoryRestResource
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Repository
 public interface PaymentOptionRepository extends JpaRepository<PaymentOption, Long>{
 

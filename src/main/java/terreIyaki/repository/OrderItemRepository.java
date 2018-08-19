@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import terreIyaki.entity.OrderItem;
 @RepositoryRestResource
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
 

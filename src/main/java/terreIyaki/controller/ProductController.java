@@ -14,6 +14,7 @@ import terreIyaki.entity.Product;
 import terreIyaki.repository.*;
 
 @RestController
+@CrossOrigin("*")
 public class ProductController {
 
 	private ProductRepository productRepository;

@@ -10,6 +10,7 @@ import terreIyaki.entity.Combo;
 import terreIyaki.repository.ComboRepository;
 
 @RestController
+@CrossOrigin("*")
 public class ComboController {
 
 	private ComboRepository comboRepository;

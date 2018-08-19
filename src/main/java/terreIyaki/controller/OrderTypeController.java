@@ -12,6 +12,7 @@ import terreIyaki.repository.OrderTypeRepository;
 import terreIyaki.service.MyOrderServiceInterface;
 
 @RestController
+@CrossOrigin("*")
 public class OrderTypeController {
 
 	private OrderTypeRepository orderTypeRepository;
@@ -31,19 +32,7 @@ public class OrderTypeController {
 		return orderTypeRepository.findByName(name);
 	}
 
-	//on ouvre une commande a emporter ou sur place
-	@RequestMapping(value = "/selectOrder", method = RequestMethod.GET)
-	@CrossOrigin(origins = "*")
-	public TheMessage selectOrder(String name, String email) {
-		return myOrderServiceInterface.createMyOrderMessage(name, email);		
-	}	
 
-	//on ajoute la table a la commande sur place
-	@RequestMapping(value = "/chooseTable", method = RequestMethod.GET)
-	@CrossOrigin(origins = "*")
-	public TheMessage chooseTable(int tableNumber, Long  userId) {
-		return myOrderServiceInterface.chooseTable(tableNumber, userId);
-	}
 
 	
 }

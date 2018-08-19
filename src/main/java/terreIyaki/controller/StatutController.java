@@ -9,6 +9,7 @@ import terreIyaki.entity.Statut;
 import terreIyaki.repository.StatutRepository;
 
 @RestController
+@CrossOrigin("*")
 public class StatutController {
 
 	private StatutRepository statutRepository;
@@ -20,13 +21,13 @@ public class StatutController {
 
 	@RequestMapping(value = "/getStatutByName", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
-	Statut getStatutByName(String name) {
+	public Statut getStatutByName(String name) {
 		return statutRepository.getStatutByName(name);
 	}
 
 	@RequestMapping(value = "/getStatutByNumero", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
-	Statut getStatutByNumero(int id) {
+	public Statut getStatutByNumero(int id) {
 		return statutRepository.findByNumero(id);
 
 	}
