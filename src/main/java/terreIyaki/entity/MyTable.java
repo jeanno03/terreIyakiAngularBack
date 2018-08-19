@@ -1,5 +1,7 @@
 package terreIyaki.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -26,7 +29,7 @@ public class MyTable {
 
 	private @NonNull int tableNumber;
 
-	private MyOrder myOrder;
+	private Set<MyOrder> myOrders;
 
 	private Statut statut;
 
@@ -43,6 +46,13 @@ public class MyTable {
 		super();
 		this.tableNumber = tableNumber;
 		this.statut = statut;
+	}
+	
+
+	public MyTable(int tableNumber, Set<MyOrder> myOrders) {
+		super();
+		this.tableNumber = tableNumber;
+		this.myOrders = myOrders;
 	}
 
 	@Id
@@ -68,14 +78,15 @@ public class MyTable {
 		this.tableNumber = tableNumber;
 	}
 
+
 	@JsonIgnore
-	@OneToOne(mappedBy = "myTable", cascade = CascadeType.ALL)
-	public MyOrder getMyOrder() {
-		return myOrder;
+	@OneToMany(mappedBy = "myTable", cascade = CascadeType.ALL)
+	public Set<MyOrder> getMyOrders() {
+		return myOrders;
 	}
 
-	public void setMyOrder(MyOrder myOrder) {
-		this.myOrder = myOrder;
+	public void setMyOrders(Set<MyOrder> myOrders) {
+		this.myOrders = myOrders;
 	}
 
 	@ManyToOne

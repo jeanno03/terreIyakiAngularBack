@@ -310,7 +310,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 //
 //		OrderType orderType01 = new OrderType ("Sur place");
 //		OrderType orderType02 = new OrderType ("A emporter");
-
+//
 //		productRepository.save(produts01);
 //		productRepository.save(produts02);	
 //		productRepository.save(produts04);
