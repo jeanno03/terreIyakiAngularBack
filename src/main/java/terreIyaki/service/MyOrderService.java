@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 
@@ -105,11 +107,11 @@ public class MyOrderService implements MyOrderServiceInterface {
 		MyOrder mo01 = myOrderRepository.selectLastMyOrderByUser(userId);
 
 		//on récupère la table
-//		MyTable mt01 =  myTableRepository.findById(tableId);
-		
+		//		MyTable mt01 =  myTableRepository.findById(tableId);
+
 		//l'algo a été modifié car en angular j'avais besoin du numéro de table en parametre
 		MyTable mt01 =  myTableRepository.findByTableNumber(tableNumber);
-		
+
 
 		//je rajoute le numéro de la table
 		mo01.setMyTable(mt01);
@@ -498,14 +500,22 @@ public class MyOrderService implements MyOrderServiceInterface {
 	}
 
 	public MyOrder getLastOrderByUser(Long userId)throws SQLException{
-		
-		
-		
-		
-		
-		
-		
-		return myOrderRepository.selectLastMyOrderByUser(userId);
+
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
+
+			//on récupère la 1ere valeure
+			MyOrder or01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +or01);
+			return or01;
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}
+		return null;
 	}
 
 }

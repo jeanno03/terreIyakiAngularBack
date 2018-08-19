@@ -36,6 +36,9 @@ public interface MyOrderRepository extends JpaRepository<MyOrder, Long>{
 	MyOrder selectLastMyOrderByUser(@Param("paramId")Long userId);
 	
 	
+	List<MyOrder> findByStatutNumeroAndMyUserIdOrderByIdDesc(int numero, Long id);
+	
+	
 	
 	
 
