@@ -167,7 +167,7 @@ public class Historisation {
 		this.payment = payment;
 	}
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "statut_id")
 	public Statut getStatut() {
 		return statut;

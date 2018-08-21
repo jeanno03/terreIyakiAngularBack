@@ -33,7 +33,7 @@ public class Statut {
 
 	private Set<MyOrder> myOrders;
 
-	private Historisation historisation;
+	private Set<Historisation> historisations;
 
 	private Set<OrderItem> orderItems;
 
@@ -103,13 +103,13 @@ public class Statut {
 	}
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "statut", cascade = CascadeType.ALL)
-	public Historisation getHistorisation() {
-		return historisation;
+	@OneToMany(mappedBy = "statut", cascade = CascadeType.ALL)
+	public Set<Historisation> getHistorisations() {
+		return historisations;
 	}
 
-	public void setHistorisation(Historisation historisation) {
-		this.historisation = historisation;
+	public void setHistorisations(Set<Historisation> historisations) {
+		this.historisations = historisations;
 	}
 
 	@JsonIgnore

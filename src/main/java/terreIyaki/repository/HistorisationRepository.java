@@ -1,5 +1,8 @@
 package terreIyaki.repository;
 
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
@@ -11,6 +14,6 @@ import terreIyaki.entity.Historisation;
 @Repository
 public interface HistorisationRepository extends JpaRepository<Historisation, Long>{
 
-	Historisation findByMyOrderId(Long myOrderId);
+	Set<Historisation> findByMyOrderId(Long myOrderId);
 
 }

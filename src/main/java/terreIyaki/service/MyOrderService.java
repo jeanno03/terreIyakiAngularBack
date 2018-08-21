@@ -437,17 +437,15 @@ public class MyOrderService implements MyOrderServiceInterface {
 		//les prix des produits ne doivent pas être ajoutés
 		//pour le test j'ajoute le prix ttc une taxe a 1, quantité à 1
 		OrderItem o00 = new OrderItem(0f, 0f, 1, "menu ajouté", co01.getVatPrice());
-
-
-		orderItems01.add(o00);
+		
 		o00.setCombo(co01);
 		o00.setMyOrder(m01);
 		o00.setStatut(s02);
+		
+		orderItems01.add(o00);
+
 		orderItemRepository.save(o00);
-
-
-
-
+		
 		for(int i=0;i<productsId.size();i++) {
 			Product po01 = productRepository.findById(productsId.get(i));
 			OrderItem oi01 = new OrderItem(po01.getPrice(), po01.getTax(), 1, "produit du menu ajouté", 0f);
@@ -563,17 +561,22 @@ public class MyOrderService implements MyOrderServiceInterface {
 		for (OrderItem o01 : li01) {
 
 			try {
+				
+			if(o01.getIdProduct()!=null) {
 				//si produit je met statut 9
 				o01.setStatut(st02);
+			}
+			else if(o01.getComboName()!=null) {
+				//si produit inexistant ==> c est un menu
+				//je met satu 13
+				o01.setStatut(st03);
+			}
 
 				orderItemRepository.save(o01);
 
 			}catch(NullPointerException ex)	{
 				System.out.println(ex);
-				//si produit inexistant ==> c est un menu
-				//je met satu 13
-				o01.setStatut(st03);
-				orderItemRepository.save(o01);
+
 			}
 		}
 		return theMessageRepository.findByNumber(15);
@@ -626,10 +629,15 @@ public class MyOrderService implements MyOrderServiceInterface {
 
 		//on va chercher l'historisation
 		try {
-			Historisation hi01 = historisationRepository.findByMyOrderId(m01.getId());
+			Set<Historisation> hi01 = historisationRepository.findByMyOrderId(m01.getId());
 			//		historisationRepository.delete(hi01);
 			//j'annule l'historisation
-			hi01.setStatut(st01);
+			
+			for(Historisation hi : hi01) {
+				hi.setStatut(st01);
+				historisationRepository.save(hi);
+			}
+			
 		}catch(NullPointerException ex) {
 			System.out.println(ex);
 		}
