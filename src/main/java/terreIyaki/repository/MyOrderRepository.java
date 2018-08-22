@@ -2,6 +2,9 @@ package terreIyaki.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -36,5 +39,8 @@ public interface MyOrderRepository extends JpaRepository<MyOrder, Long>{
 	
 	
 	List<MyOrder> findByStatutNumeroAndMyUserIdOrderByIdDesc(int numero, Long id);
+	
+	List<MyOrder> findByMyUserId(Long id,Pageable pageable);
+	
 	
 }
