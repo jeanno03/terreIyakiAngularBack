@@ -28,7 +28,7 @@ public class CategoryController {
 	}
 
 	@RequestMapping(value = "/getCategoryByName", method = RequestMethod.GET)
-	public List<Category> getCategoryByName(@RequestParam(name="name", defaultValue="Plats")String name){
+	public Category getCategoryByName(@RequestParam(name="name", defaultValue="Plats")String name){
 		return categoryRepository.findByNameIgnoreCase(name);
 	}
 

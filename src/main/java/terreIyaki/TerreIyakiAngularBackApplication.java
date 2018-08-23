@@ -22,7 +22,7 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 	private ProductRepository productRepository;
 
 	@Autowired
-	private CategoryRepository CategoryRepository;
+	private CategoryRepository categoryRepository;
 
 	@Autowired
 	private VatRepository vatRepository;
@@ -60,6 +60,10 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 
 	@Transactional
 	public void run(String... arg0) throws Exception {
+		
+		
+		//*********************début jeu d'essai 01 *********************************
+		
 //		Category category00 = new Category("Entrées");
 //		Category category01 = new Category("Plats");
 //		Category category02 = new Category("Desserts");
@@ -316,15 +320,15 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 //		productRepository.save(produts04);
 //		productRepository.save(produts05);
 //
-//		CategoryRepository.save(category00);
-//		CategoryRepository.save(category01);
-//		CategoryRepository.save(category02);
-//		CategoryRepository.save(category03);
-//		CategoryRepository.save(category04);
+//		categoryRepository.save(category00);
+//		categoryRepository.save(category01);
+//		categoryRepository.save(category02);
+//		categoryRepository.save(category03);
+//		categoryRepository.save(category04);
 //
-//		CategoryRepository.save(category101);
-//		CategoryRepository.save(category102);
-//		CategoryRepository.save(category103);
+//		categoryRepository.save(category101);
+//		categoryRepository.save(category102);
+//		categoryRepository.save(category103);
 //
 //		productRepository.save(produit01);
 //		productRepository.save(produit02);
@@ -417,9 +421,12 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 //
 //		orderTypeRepository.save(orderType01);
 //		orderTypeRepository.save(orderType02);
+		
+		
+		//*********************fin jeu d'essai 01 *********************************
 
 		productRepository.findAll().forEach(System.out::println);
-		CategoryRepository.findAll().forEach(System.out::println);
+		categoryRepository.findAll().forEach(System.out::println);
 		vatRepository.findAll().forEach(System.out::println);
 
 		MyTable table101 = new MyTable(1);
@@ -577,13 +584,124 @@ public class TerreIyakiAngularBackApplication implements CommandLineRunner {
 
 
 		System.out.println("\nnombre total de vérification : " + provi02);
+		
+		System.out.println("\n*********************ajout d'une bierre et d'un menu début ****************");
+
+//ajout d'une bierre
+		
+		Category cat10 = categoryRepository.findByNameIgnoreCase("Boissons");
+
+		Vat vat00 = vatRepository.findByLabelIgnoreCase("TVA réduite");
+		Vat vat10 = vatRepository.findByLabelIgnoreCase("TVA intermédiaire");
+		Vat vat20 = vatRepository.findByLabelIgnoreCase("TVA normale");
+
+		Product produit10 = new Product("HEINEKEN - ", 3.33f, "assets/images/verre-biere-heieneken-standard_25cl.jpg", "Bière blonde 5° - 25 cl", cat10);
+
+		produit10.setCategory(cat10);
+		
+		produit10.setVat(vat20);
+		
+		
+
+//ajout d'un nouveau menu
+		
+		Category cat11 = categoryRepository.findByNameIgnoreCase("1 - Entrées");
+		Category cat12 = categoryRepository.findByNameIgnoreCase("2 - Plats au choix");
+		Category cat13 = categoryRepository.findByNameIgnoreCase("3 - Desserts au choix");
+		Category cat14 = new Category("4 - Boissons au choix");
+
+				Combo combo10 = new Combo("Menu Bateau Yoki", 50f, "assets/images/bateau-or-plat.jpg",
+						"Menu royal pour 2 personnes");
+
+		//5 soit 4.55
+				Set produts10 = new HashSet<Product>() {
+					{
+						add(new Product("2 Soupe Miso et 2 salades de chou japonaise", 4.55f, "assets/images/miso-et-salade.jpg",
+								"Le miso, pâte de haricots de soja fermentée et salée, et sa salade de chou japonaise pour 2",
+								cat12, vat10));
+					}
+			    };
+
+		//36 soit 32.73
+				Set produts20 = new HashSet<Product>() {
+					{
+						add(new Product("6 Sushi,6 maki,6 california maki,15 assortiment de sashimi 8 Brochettes", 32.73f, "assets/images/bateau-or-plat.jpg",
+								"1 au boeuf, 1 au poulet, 1 au fromage, 1 aux boulettes de poulet, 1 aux ailes de poulet",
+								cat12, vat10));
+						add(new Product("8 california thon avocat, 8 california saumon avocat, 8 sushi assortiment, 18 sashimi assortiment, 6 Pièces de raviolis", 32.73f, "assets/images/bateau-or-plat-2.jpg",
+								"assortiments riches et variés",
+								cat12, vat10));
+					}
+			    };
+
+		//5 soit 4.55
+				Set produts30 = new HashSet<Product>() {
+					{
+						add(new Product("2 boules de glaces", 4.55f, "assets/images/glace-deux-boules.jpg",
+								"Délicieux dessert glacé",
+								cat13, vat10));
+						add(new Product("2 cafés", 4.55f, "assets/images/2-expressos.jpg",
+								"2 expressos",
+								cat13, vat10));
+					}
+			    };
+
+			    
+		//4==> 3.79 pour 5.5
+		//4==> 3.33 pour 20
+				Set produts40 = new HashSet<Product>() {
+					{
+						add(new Product("2 flutes de champagne", 3.33f, "assets/images/flute-a-champagne.jpg",
+								"A consommer avec modération",
+								cat14, vat20));
+						add(new Product("2 cannettes de coca", 3.79f, "assets/images/Coca_Canette_33cl.png",
+								"Célèbre boisson mythique",
+								cat14, vat00));
+					}
+				};
+
+		
+				ComboCategory comboCategory01 = new ComboCategory(1);
+				ComboCategory comboCategory02 = new ComboCategory(2);
+				ComboCategory comboCategory03 = new ComboCategory(3);
+				ComboCategory comboCategory04 = new ComboCategory(4);
+				
+				comboCategory01.setCombo(combo10);
+				comboCategory02.setCombo(combo10);
+				comboCategory03.setCombo(combo10);
+				comboCategory04.setCombo(combo10);
+
+				comboCategory01.setCategory(cat11);
+				comboCategory02.setCategory(cat12);
+				comboCategory03.setCategory(cat13);
+				comboCategory04.setCategory(cat14);
+
+				comboCategory01.setProducts(produts10);
+				comboCategory02.setProducts(produts20);
+				comboCategory03.setProducts(produts30);
+				comboCategory04.setProducts(produts40);
 
 
-
-
-
-
-
-
+				comboCategoryRepository.save(comboCategory01);
+				comboCategoryRepository.save(comboCategory02);
+				comboCategoryRepository.save(comboCategory03);
+				comboCategoryRepository.save(comboCategory04);
+				
+				
+				productRepository.save(produit10);
+				categoryRepository.save(cat14);	
+				productRepository.save(produts10);
+				productRepository.save(produts20);
+				productRepository.save(produts30);
+				productRepository.save(produts40);
+				comboRepository.save(combo10);
+				
+				System.out.println("\n*********************ajout d'une bierre et d'un menu fin ****************");
+	
+	
 	}
+	
+
+	
+	
 }

@@ -11,5 +11,7 @@ import terreIyaki.entity.Vat;
 @CrossOrigin(origins = "*")
 @Repository
 public interface VatRepository extends JpaRepository<Vat, Long>{
+	
+	Vat findByLabelIgnoreCase(String label);
 
 }
