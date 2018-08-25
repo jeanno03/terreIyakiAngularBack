@@ -37,12 +37,6 @@ public class MyGrant {
 		this.name = name;
 	}
 
-	public MyGrant(String name, Set<MyUser> myUsers) {
-		super();
-		this.name = name;
-		this.myUsers = myUsers;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {

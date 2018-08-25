@@ -10,7 +10,6 @@ public interface MyUserServiceInterface {
 	public TheMessage createMyUserMessage(MyUser myUser01);
 
 	public TheMessage editMyUserMessage(MyUser myUser01);
-
-
+	
 
 }

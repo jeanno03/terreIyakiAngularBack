@@ -39,20 +39,6 @@ public class Payment {
 		this.amount = amount;
 	}
 
-	public Payment(Date registeredDate, float amount, MyOrder myOrder) {
-		super();
-		this.registeredDate = registeredDate;
-		this.amount = amount;
-		this.myOrder = myOrder;
-	}
-
-	public Payment(Date registeredDate, float amount, PaymentOption paymentOption) {
-		super();
-		this.registeredDate = registeredDate;
-		this.amount = amount;
-		this.paymentOption = paymentOption;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {

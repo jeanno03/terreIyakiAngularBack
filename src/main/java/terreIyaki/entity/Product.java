@@ -52,6 +52,7 @@ public class Product{
 		this.description = description;
 	}	
 
+	//pour exemple de l enregistrement via le constructeur
 	public Product(String name, float price, String picture, String description, Category category) {
 		super();
 		this.name = name;
@@ -60,43 +61,43 @@ public class Product{
 		this.description = description;
 		this.category = category;
 	}
-
-	public Product(String name, float price, String picture, String description, Vat vat) {
-		super();
-		this.name = name;
-		this.price = price;
-		this.picture = picture;
-		this.description = description;
-		this.vat = vat;
-	}
-
-	public Product(String name, float price, String picture, String description, Statut statut) {
-		super();
-		this.name = name;
-		this.price = price;
-		this.picture = picture;
-		this.description = description;
-		this.statut = statut;
-	}
-
-	public Product(String name, float price, String picture, String description, Set<OrderItem> orderItems) {
-		super();
-		this.name = name;
-		this.price = price;
-		this.picture = picture;
-		this.description = description;
-		this.orderItems = orderItems;
-	}
-
-	public Product(String name, float price, String picture, String description, Category category, Vat vat) {
-		super();
-		this.name = name;
-		this.price = price;
-		this.picture = picture;
-		this.description = description;
-		this.category = category;
-		this.vat = vat;
-	}
+//
+//	public Product(String name, float price, String picture, String description, Vat vat) {
+//		super();
+//		this.name = name;
+//		this.price = price;
+//		this.picture = picture;
+//		this.description = description;
+//		this.vat = vat;
+//	}
+//
+//	public Product(String name, float price, String picture, String description, Statut statut) {
+//		super();
+//		this.name = name;
+//		this.price = price;
+//		this.picture = picture;
+//		this.description = description;
+//		this.statut = statut;
+//	}
+//
+//	public Product(String name, float price, String picture, String description, Set<OrderItem> orderItems) {
+//		super();
+//		this.name = name;
+//		this.price = price;
+//		this.picture = picture;
+//		this.description = description;
+//		this.orderItems = orderItems;
+//	}
+//
+//	public Product(String name, float price, String picture, String description, Category category, Vat vat) {
+//		super();
+//		this.name = name;
+//		this.price = price;
+//		this.picture = picture;
+//		this.description = description;
+//		this.category = category;
+//		this.vat = vat;
+//	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

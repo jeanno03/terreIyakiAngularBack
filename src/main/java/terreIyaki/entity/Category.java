@@ -41,12 +41,6 @@ public class Category {
 		this.name = name;
 	}
 
-	//	public Category(String name, Menu menu) {
-	//		super();
-	//		this.name = name;
-	//		this.menu = menu;
-	//	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {

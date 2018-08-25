@@ -47,29 +47,6 @@ public class MyOrder {
 		this.orderDate = orderDate;
 	}
 
-	public MyOrder(Date orderDate, MyUser myUser) {
-		super();
-		this.orderDate = orderDate;
-		this.myUser = myUser;
-	}
-
-	public MyOrder(Date orderDate, MyTable myTable) {
-		super();
-		this.orderDate = orderDate;
-		this.myTable = myTable;
-	}
-
-	public MyOrder(Date orderDate, OrderType orderType) {
-		super();
-		this.orderDate = orderDate;
-		this.orderType = orderType;
-	}
-
-	public MyOrder(Date orderDate, Statut statut) {
-		super();
-		this.orderDate = orderDate;
-		this.statut = statut;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

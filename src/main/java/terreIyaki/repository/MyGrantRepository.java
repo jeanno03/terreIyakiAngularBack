@@ -10,5 +10,7 @@ import terreIyaki.entity.MyGrant;
 @CrossOrigin(origins = "*")
 @Repository
 public interface MyGrantRepository extends JpaRepository<MyGrant, Long>{
+	
+	MyGrant findByName(String name);
 
 }

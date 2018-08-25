@@ -1,21 +1,48 @@
 package terreIyaki.service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import terreIyaki.entity.Category;
+import terreIyaki.entity.CategoryMessage;
+import terreIyaki.entity.Combo;
+import terreIyaki.entity.ComboCategory;
+import terreIyaki.entity.MyGrant;
+import terreIyaki.entity.MyTable;
 import terreIyaki.entity.MyUser;
+import terreIyaki.entity.OrderType;
+import terreIyaki.entity.Product;
+import terreIyaki.entity.Statut;
 import terreIyaki.entity.TheMessage;
+import terreIyaki.entity.Vat;
+import terreIyaki.repository.CategoryMessageRepository;
+import terreIyaki.repository.CategoryRepository;
+import terreIyaki.repository.ComboCategoryRepository;
+import terreIyaki.repository.ComboRepository;
+import terreIyaki.repository.MyGrantRepository;
+import terreIyaki.repository.MyTableRepository;
 import terreIyaki.repository.MyUserRepository;
+import terreIyaki.repository.OrderTypeRepository;
+import terreIyaki.repository.ProductRepository;
+import terreIyaki.repository.StatutRepository;
 import terreIyaki.repository.TheMessageRepository;
+import terreIyaki.repository.VatRepository;
 
 @Service
 public class MyUserService implements MyUserServiceInterface {
 
-	@Autowired
-	private MyUserRepository myUserRepository;
+//	@Autowired
+//	private StatutRepository statutRepository;
 
 	@Autowired
+	private MyUserRepository myUserRepository;
+	
+	@Autowired
 	private TheMessageRepository theMessageRepository;
+	
 
 	// évolution de la création de l utilisateur
 	// méthode non utilisé
@@ -145,5 +172,9 @@ public class MyUserService implements MyUserServiceInterface {
 
 		return null;
 	}
-
+	
+	
+		
+		
+	
 }

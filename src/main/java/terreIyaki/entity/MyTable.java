@@ -42,19 +42,6 @@ public class MyTable {
 		this.tableNumber = tableNumber;
 	}
 
-	public MyTable(int tableNumber, Statut statut) {
-		super();
-		this.tableNumber = tableNumber;
-		this.statut = statut;
-	}
-	
-
-	public MyTable(int tableNumber, Set<MyOrder> myOrders) {
-		super();
-		this.tableNumber = tableNumber;
-		this.myOrders = myOrders;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {

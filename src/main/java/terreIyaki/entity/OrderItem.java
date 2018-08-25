@@ -41,16 +41,6 @@ public class OrderItem {
 		super();
 	}
 
-
-
-	//	public OrderItem(float price, float tax, int quantite, String comment) {
-	//		super();
-	//		this.price = price;
-	//		this.tax = tax;
-	//		this.quantite=quantite;
-	//		this.comment = comment;
-	//	}
-
 	public OrderItem(float price, float tax, int quantite, String comment, float vatComboPrice) {
 		super();
 		this.price = price;
@@ -58,32 +48,6 @@ public class OrderItem {
 		this.quantite = quantite;
 		this.comment = comment;
 		this.vatComboPrice = vatComboPrice;
-	}
-
-
-
-	public OrderItem(float price, float tax, String comment, Product product) {
-		super();
-		this.price = price;
-		this.tax = tax;
-		this.comment = comment;
-		this.product = product;
-	}
-
-	public OrderItem(float price, float tax, String comment, Statut statut) {
-		super();
-		this.price = price;
-		this.tax = tax;
-		this.comment = comment;
-		this.statut = statut;
-	}
-
-	public OrderItem(float price, float tax, String comment, Combo combo) {
-		super();
-		this.price = price;
-		this.tax = tax;
-		this.comment = comment;
-		this.combo = combo;
 	}
 
 	@Id

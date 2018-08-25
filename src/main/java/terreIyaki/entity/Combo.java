@@ -51,24 +51,6 @@ public class Combo {
 		this.description = description;
 	}
 
-	public Combo(String name, float vatPrice, String picture, String description, Statut statut) {
-		super();
-		this.name = name;
-		this.vatPrice = vatPrice;
-		this.picture = picture;
-		this.description = description;
-		this.statut = statut;
-	}
-
-	public Combo(String name, float vatPrice, String picture, String description, Menu menu) {
-		super();
-		this.name = name;
-		this.vatPrice = vatPrice;
-		this.picture = picture;
-		this.description = description;
-		this.menu = menu;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {

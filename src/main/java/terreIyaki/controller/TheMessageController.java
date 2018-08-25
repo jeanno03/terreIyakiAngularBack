@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import terreIyaki.entity.MyUser;
 import terreIyaki.entity.TheMessage;
 import terreIyaki.repository.TheMessageRepository;
+import terreIyaki.service.DataServiceInterface;
 import terreIyaki.service.MyOrderServiceInterface;
 import terreIyaki.service.MyUserServiceInterface;
 import terreIyaki.tool.LongClass;
@@ -30,6 +31,10 @@ public class TheMessageController implements Converter<String, Long>{
 
 	@Autowired
 	private MyOrderServiceInterface myOrderServiceInterface;
+	
+	@Autowired
+	private DataServiceInterface dataServiceInterface;
+	
 
 	public TheMessageController(TheMessageRepository theMessageRepository) {
 		super();
@@ -180,6 +185,19 @@ public class TheMessageController implements Converter<String, Long>{
 	@CrossOrigin(origins = "*")
 	public TheMessage chooseTable(int tableNumber, Long  userId) {
 		return myOrderServiceInterface.chooseTable(tableNumber, userId);
+	}
+	
+	//jeux d essai uniquement via l'URL
+	@RequestMapping(value = "/jeuEssai01", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public TheMessage jeuEssai01() {
+		return dataServiceInterface.jeuEssai01();
+	}
+	
+	@RequestMapping(value = "/jeuEssai02", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public TheMessage jeuEssai02() {
+		return dataServiceInterface.jeuEssai02();
 	}
 
 }

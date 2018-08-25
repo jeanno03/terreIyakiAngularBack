@@ -42,45 +42,6 @@ public class Historisation {
 		this.registeredDate = registeredDate;
 	}
 
-	public Historisation(Date registeredDate, MyUser myUser) {
-		super();
-		this.registeredDate = registeredDate;
-		this.myUser = myUser;
-	}
-
-	public Historisation(Date registeredDate, MyOrder myOrder) {
-		super();
-		this.registeredDate = registeredDate;
-		this.myOrder = myOrder;
-	}
-
-
-
-	public Historisation(Long id, Date registeredDate, Set<OrderItem> orderItems) {
-		super();
-		this.id = id;
-		this.registeredDate = registeredDate;
-		this.orderItems = orderItems;
-	}
-
-	public Historisation(Date registeredDate, OrderType orderType) {
-		super();
-		this.registeredDate = registeredDate;
-		this.orderType = orderType;
-	}
-
-	public Historisation(Date registeredDate, Payment payment) {
-		super();
-		this.registeredDate = registeredDate;
-		this.payment = payment;
-	}
-
-	public Historisation(Date registeredDate, Statut statut) {
-		super();
-		this.registeredDate = registeredDate;
-		this.statut = statut;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {

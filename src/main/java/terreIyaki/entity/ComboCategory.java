@@ -33,19 +33,6 @@ public class ComboCategory {
 		this.number = number;
 	}
 
-
-	public ComboCategory(int number, Combo combo) {
-		super();
-		this.number = number;
-		this.combo = combo;
-	}
-
-	public ComboCategory(int number, Category category) {
-		super();
-		this.number = number;
-		this.category = category;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
