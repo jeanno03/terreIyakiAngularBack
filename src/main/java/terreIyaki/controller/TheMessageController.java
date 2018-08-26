@@ -163,7 +163,16 @@ public class TheMessageController implements Converter<String, Long>{
 	@RequestMapping(value = "/confirmOrder", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public TheMessage confirmOrder(Long userId) {
-		return myOrderServiceInterface.confirmOrder(userId);
+		
+		//besoin condition si sur place ==> table !=null
+		boolean test = myOrderServiceInterface.confirmOrderTestTable(userId);
+		if (test) {
+			return myOrderServiceInterface.confirmOrder(userId);
+		}
+		
+		
+		//(20,"Vous devez choisir choisir une table avant de valider");
+		return theMessageRepository.findByNumber(20);
 
 	}
 

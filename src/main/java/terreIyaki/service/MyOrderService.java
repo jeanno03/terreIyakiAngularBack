@@ -104,27 +104,27 @@ public class MyOrderService implements MyOrderServiceInterface {
 	public TheMessage chooseTable(int tableNumber, Long  userId) {
 
 		//on récupère la derniere commande de l'user
-//		MyOrder mo01 = myOrderRepository.selectLastMyOrderByUser(userId);
-		
+		//		MyOrder mo01 = myOrderRepository.selectLastMyOrderByUser(userId);
+
 		//on veut la derniere commande
-				MyOrder m01 = new MyOrder();
-						try {
-							//on a toute les commande de l utilisateur
-							//			on cherche commande avec statut ==> 3, "commande en cours";
-							List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
-							System.out.println("toutes les commandes de l'user : " +li01);
+		MyOrder m01 = new MyOrder();
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
 
-							//on récupère la 1ere valeure
-							m01 = li01.get(0);
-							System.out.println("last commande de l'user en cours : " +m01);
-							
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
 
-						}catch(NullPointerException ex) {
-							System.out.println(ex);
-						}catch(IndexOutOfBoundsException ex) {
-							System.out.println(ex);
-						}
-				
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
 
 		//on récupère la table
 		//		MyTable mt01 =  myTableRepository.findById(tableId);
@@ -163,27 +163,27 @@ public class MyOrderService implements MyOrderServiceInterface {
 		Statut s01 = statutRepository.findByNumero(7);
 
 		// je cherche la derniere commande
-//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
-		
+		//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+
 		//on veut la derniere commande
-				MyOrder m01 = new MyOrder();
-						try {
-							//on a toute les commande de l utilisateur
-							//			on cherche commande avec statut ==> 3, "commande en cours";
-							List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
-							System.out.println("toutes les commandes de l'user : " +li01);
+		MyOrder m01 = new MyOrder();
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
 
-							//on récupère la 1ere valeure
-							m01 = li01.get(0);
-							System.out.println("last commande de l'user en cours : " +m01);
-							
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
 
-						}catch(NullPointerException ex) {
-							System.out.println(ex);
-						}catch(IndexOutOfBoundsException ex) {
-							System.out.println(ex);
-						}
-				
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
 
 		String comment = "produit ajouté";
 		int quantite = 1;
@@ -249,27 +249,27 @@ public class MyOrderService implements MyOrderServiceInterface {
 	public TheMessage incrementeOrderItem(Long productId, Long userId) {
 
 		// je cherche la derniere commande
-//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
-		
+		//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+
 		//on veut la derniere commande
-				MyOrder m01 = new MyOrder();
-						try {
-							//on a toute les commande de l utilisateur
-							//			on cherche commande avec statut ==> 3, "commande en cours";
-							List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
-							System.out.println("toutes les commandes de l'user : " +li01);
+		MyOrder m01 = new MyOrder();
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
 
-							//on récupère la 1ere valeure
-							m01 = li01.get(0);
-							System.out.println("last commande de l'user en cours : " +m01);
-							
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
 
-						}catch(NullPointerException ex) {
-							System.out.println(ex);
-						}catch(IndexOutOfBoundsException ex) {
-							System.out.println(ex);
-						}
-				
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
 
 		// on va chercher toutes les orderItems de la commande
 		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
@@ -293,27 +293,27 @@ public class MyOrderService implements MyOrderServiceInterface {
 	public TheMessage decrementeOrderItem(Long productId, Long userId) {
 
 		// je cherche la derniere commande
-//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
-		
+		//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+
 		//on veut la derniere commande
-				MyOrder m01 = new MyOrder();
-						try {
-							//on a toute les commande de l utilisateur
-							//			on cherche commande avec statut ==> 3, "commande en cours";
-							List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
-							System.out.println("toutes les commandes de l'user : " +li01);
+		MyOrder m01 = new MyOrder();
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
 
-							//on récupère la 1ere valeure
-							m01 = li01.get(0);
-							System.out.println("last commande de l'user en cours : " +m01);
-							
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
 
-						}catch(NullPointerException ex) {
-							System.out.println(ex);
-						}catch(IndexOutOfBoundsException ex) {
-							System.out.println(ex);
-						}
-				
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
 
 		// on va chercher toutes les orderItems de la commande
 		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
@@ -340,27 +340,27 @@ public class MyOrderService implements MyOrderServiceInterface {
 	public TheMessage deleteOrderItem(Long productId, Long userId) {
 
 		// je cherche la derniere commande
-//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
-		
+		//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+
 		//on veut la derniere commande
-				MyOrder m01 = new MyOrder();
-						try {
-							//on a toute les commande de l utilisateur
-							//			on cherche commande avec statut ==> 3, "commande en cours";
-							List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
-							System.out.println("toutes les commandes de l'user : " +li01);
+		MyOrder m01 = new MyOrder();
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
 
-							//on récupère la 1ere valeure
-							m01 = li01.get(0);
-							System.out.println("last commande de l'user en cours : " +m01);
-							
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
 
-						}catch(NullPointerException ex) {
-							System.out.println(ex);
-						}catch(IndexOutOfBoundsException ex) {
-							System.out.println(ex);
-						}
-				
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
 
 		// on va chercher toutes les orderItems de la commande
 		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
@@ -388,29 +388,29 @@ public class MyOrderService implements MyOrderServiceInterface {
 		MyUser my01 = myUserRepository.findById(userId);
 
 		// je cherche la derniere commande
-//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
-		
-		
+		//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+
+
 		//on veut la derniere commande
-				MyOrder m01 = new MyOrder();
-						try {
-							//on a toute les commande de l utilisateur
-							//			on cherche commande avec statut ==> 3, "commande en cours";
-							List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
-							System.out.println("toutes les commandes de l'user : " +li01);
+		MyOrder m01 = new MyOrder();
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
 
-							//on récupère la 1ere valeure
-							m01 = li01.get(0);
-							System.out.println("last commande de l'user en cours : " +m01);
-							
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
 
-						}catch(NullPointerException ex) {
-							System.out.println(ex);
-						}catch(IndexOutOfBoundsException ex) {
-							System.out.println(ex);
-						}
-				
-		
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
+
 
 		//je cherche le combo
 		Combo co01 = comboRepository.findById(comboId);
@@ -437,15 +437,15 @@ public class MyOrderService implements MyOrderServiceInterface {
 		//les prix des produits ne doivent pas être ajoutés
 		//pour le test j'ajoute le prix ttc une taxe a 1, quantité à 1
 		OrderItem o00 = new OrderItem(0f, 0f, 1, "menu ajouté", co01.getVatPrice());
-		
+
 		o00.setCombo(co01);
 		o00.setMyOrder(m01);
 		o00.setStatut(s02);
-		
+
 		orderItems01.add(o00);
 
 		orderItemRepository.save(o00);
-		
+
 		for(int i=0;i<productsId.size();i++) {
 			Product po01 = productRepository.findById(productsId.get(i));
 			OrderItem oi01 = new OrderItem(po01.getPrice(), po01.getTax(), 1, "produit du menu ajouté", 0f);
@@ -498,33 +498,64 @@ public class MyOrderService implements MyOrderServiceInterface {
 		return theMessageRepository.findByNumber(14);
 	}
 
+
+	public boolean confirmOrderTestTable(Long userId) {
+
+		//on veut la derniere commande
+		MyOrder m01 = new MyOrder();
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
+
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
+
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
+		if(m01.getOrderType().getName().equals("Sur place")&&m01.getMyTable()==null) {
+			return false;
+		}
+		return true;
+
+	}
+
+
+
 	//mess 15
 	//on valide la commande
 	public TheMessage confirmOrder(Long userId) {
 
 		// je cherche la derniere commande
-//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
-		
-		
+		//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+
+
 		//on veut la derniere commande
-				MyOrder m01 = new MyOrder();
-						try {
-							//on a toute les commande de l utilisateur
-							//			on cherche commande avec statut ==> 3, "commande en cours";
-							List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
-							System.out.println("toutes les commandes de l'user : " +li01);
+		MyOrder m01 = new MyOrder();
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
 
-							//on récupère la 1ere valeure
-							m01 = li01.get(0);
-							System.out.println("last commande de l'user en cours : " +m01);
-							
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
 
-						}catch(NullPointerException ex) {
-							System.out.println(ex);
-						}catch(IndexOutOfBoundsException ex) {
-							System.out.println(ex);
-						}
-				
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
 
 		// on va chercher toutes les orderItems de la commande
 		List<OrderItem> li01 = orderItemRepository.getOrderItemsByIdMyOrder(m01.getId());
@@ -561,16 +592,16 @@ public class MyOrderService implements MyOrderServiceInterface {
 		for (OrderItem o01 : li01) {
 
 			try {
-				
-			if(o01.getIdProduct()!=null) {
-				//si produit je met statut 9
-				o01.setStatut(st02);
-			}
-			else if(o01.getComboName()!=null) {
-				//si produit inexistant ==> c est un menu
-				//je met satu 13
-				o01.setStatut(st03);
-			}
+
+				if(o01.getIdProduct()!=null) {
+					//si produit je met statut 9
+					o01.setStatut(st02);
+				}
+				else if(o01.getComboName()!=null) {
+					//si produit inexistant ==> c est un menu
+					//je met satu 13
+					o01.setStatut(st03);
+				}
 
 				orderItemRepository.save(o01);
 
@@ -587,29 +618,29 @@ public class MyOrderService implements MyOrderServiceInterface {
 	//retour mess 17
 	public TheMessage deleteOrder(Long userId) {
 		// je cherche la derniere commande
-//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
+		//		MyOrder m01 = myOrderRepository.selectLastMyOrderByUser(userId);
 
 		//on veut la derniere commande
 		MyOrder m01 = new MyOrder();
-				try {
-					//on a toute les commande de l utilisateur
-					//			on cherche commande avec statut ==> 3, "commande en cours";
-					List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
-					System.out.println("toutes les commandes de l'user : " +li01);
+		try {
+			//on a toute les commande de l utilisateur
+			//			on cherche commande avec statut ==> 3, "commande en cours";
+			List<MyOrder> li01= myOrderRepository.findByStatutNumeroAndMyUserIdOrderByIdDesc(3, userId);
+			System.out.println("toutes les commandes de l'user : " +li01);
 
-					//on récupère la 1ere valeure
-					m01 = li01.get(0);
-					System.out.println("last commande de l'user en cours : " +m01);
-					
+			//on récupère la 1ere valeure
+			m01 = li01.get(0);
+			System.out.println("last commande de l'user en cours : " +m01);
 
-				}catch(NullPointerException ex) {
-					System.out.println(ex);
-				}catch(IndexOutOfBoundsException ex) {
-					System.out.println(ex);
-				}
-		
-		
-		
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+		}catch(IndexOutOfBoundsException ex) {
+			System.out.println(ex);
+		}
+
+
+
 		//		Statut statut14 = new Statut(14, "annulé");
 		Statut st01 = statutRepository.findByNumero(14);
 
@@ -632,12 +663,12 @@ public class MyOrderService implements MyOrderServiceInterface {
 			Set<Historisation> hi01 = historisationRepository.findByMyOrderId(m01.getId());
 			//		historisationRepository.delete(hi01);
 			//j'annule l'historisation
-			
+
 			for(Historisation hi : hi01) {
 				hi.setStatut(st01);
 				historisationRepository.save(hi);
 			}
-			
+
 		}catch(NullPointerException ex) {
 			System.out.println(ex);
 		}
@@ -672,7 +703,7 @@ public class MyOrderService implements MyOrderServiceInterface {
 	}
 
 	public MyOrder getLastOrderByUser(Long userId)throws SQLException{
-		
+
 		//on veut la derniere commande
 		try {
 			//on a toute les commande de l utilisateur

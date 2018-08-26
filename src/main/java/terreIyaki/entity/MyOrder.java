@@ -145,5 +145,22 @@ public class MyOrder {
 	public String toString() {
 		return "\nMyOrder [id=" + id + ", orderDate=" + orderDate + "]";
 	}
+	
+	@Transient
+	public Float getVatAmount() {
+		try {
+			float vatAmount=0f;
+			Set<OrderItem> li01 = this.orderItems;
+			for(OrderItem li : li01) {
+				if(li.getVatPrice()!=null) {
+					vatAmount=vatAmount+li.getVatPrice();
+				}
+			}
+return vatAmount;
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return 0f;
+		}
+	}
 
 }

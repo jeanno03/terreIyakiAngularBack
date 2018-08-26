@@ -27,6 +27,8 @@ public interface MyOrderServiceInterface {
 
 	public TheMessage deleteComboOrderItem(List <Long> orderItemIds) ;
 	
+	public boolean confirmOrderTestTable(Long userId);
+	
 	public TheMessage confirmOrder(Long userId);
 	
 	public TheMessage deleteOrder(Long userId);

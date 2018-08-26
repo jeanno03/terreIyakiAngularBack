@@ -466,14 +466,8 @@ public class DataService implements DataServiceInterface{
 			Set myGrants01 = new HashSet<MyGrant>() {
 				{
 				add(myGrant02);
-				}
-				{
 				add(myGrant03); 
-				}
-				{
 				add(myGrant04);
-				}
-				{
 				add(myGrant05);
 				}
 				};
@@ -527,6 +521,8 @@ public class DataService implements DataServiceInterface{
 			
 			TheMessage theMessage18 = new TheMessage(18,"Jeu essai 01 ok");
 			TheMessage theMessage19 = new TheMessage(19,"Jeu essai 02 ok");
+			
+			TheMessage theMessage20 = new TheMessage(20,"Vous devez choisir choisir une table avant de valider");
 
 			theMessage01.setCategoryMessage(categoryMessage01);
 			theMessage02.setCategoryMessage(categoryMessage02);
@@ -554,6 +550,8 @@ public class DataService implements DataServiceInterface{
 
 			theMessage18.setCategoryMessage(categoryMessage01);
 			theMessage19.setCategoryMessage(categoryMessage01);
+			
+			theMessage20.setCategoryMessage(categoryMessage02);
 			
 			OrderType orderType01 = new OrderType ("Sur place");
 			OrderType orderType02 = new OrderType ("A emporter");
@@ -635,6 +633,8 @@ public class DataService implements DataServiceInterface{
 			theMessageRepository.save(theMessage18);
 			theMessageRepository.save(theMessage19);
 
+			theMessageRepository.save(theMessage20);
+			
 			orderTypeRepository.save(orderType01);
 			orderTypeRepository.save(orderType02);
 			
