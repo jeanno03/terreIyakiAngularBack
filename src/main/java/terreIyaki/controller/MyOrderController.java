@@ -64,7 +64,8 @@ public class MyOrderController {
 	}
 
 
-	//toutes les commandes de l'utilisateur
+	//toutes les commandes de l'utilisateur avec pagination
+	//non utilisé car je vais utiliser un list
 	@RequestMapping(value = "/getListOrderByMyUserId", method = RequestMethod.GET)
 	@CrossOrigin(origins = "*")
 	public List<MyOrder> getListOrderByMyUserId(Long id, int page, int size) throws SQLException{
@@ -76,6 +77,24 @@ public class MyOrderController {
 			Pageable pageable = new PageRequest(page, size, sort); 
 
 			return myOrderRepository.findByMyUserId(id, pageable) ;
+
+		}catch(NullPointerException ex) {
+			System.out.println(ex);
+			return null;
+		}catch(NoSuchElementException ex) {
+			System.out.println(ex);
+			return null;		
+		}
+	}
+	
+	
+	@RequestMapping(value = "/getListOrderByMyUserIdNoPagination", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public List<MyOrder> getListOrderByMyUserIdNoPagination(Long id) throws SQLException{
+
+		try {
+			Sort sort = new Sort(new Order(Direction.DESC, "id"));
+			return myOrderRepository.findByMyUserId(id, sort) ;
 
 		}catch(NullPointerException ex) {
 			System.out.println(ex);

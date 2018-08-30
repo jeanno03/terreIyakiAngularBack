@@ -42,5 +42,5 @@ public interface MyOrderRepository extends JpaRepository<MyOrder, Long>{
 	
 	List<MyOrder> findByMyUserId(Long id,Pageable pageable);
 	
-	
+	List<MyOrder> findByMyUserId(Long id, Sort sort);
 }

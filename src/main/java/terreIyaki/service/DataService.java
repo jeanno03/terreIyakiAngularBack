@@ -132,7 +132,7 @@ public class DataService implements DataServiceInterface{
 			
 			produit01.setCategory(category01);
 			
-			Product produit02 = new Product("Porc Teriyaki", 12.27f, "assets/images/porcTerreIyaki.jpg",
+			Product produit02 = new Product("Poulet Teriyaki", 12.27f, "assets/images/pouletTerreIyaki.jpg",
 					"Le Teriyaki est une sauce asiatique que l'on trouve toute prête dans les magasins asiatiques au rayon sauce. Elle est composée principalement de sauce soja, gingembre, sucre, eau");
 			
 			produit02.setCategory(category01);
@@ -655,7 +655,7 @@ public class DataService implements DataServiceInterface{
 			Vat vat10 = vatRepository.findByLabelIgnoreCase("TVA intermédiaire");
 			Vat vat20 = vatRepository.findByLabelIgnoreCase("TVA normale");
 
-			Product produit10 = new Product("HEINEKEN - ", 3.33f, "assets/images/verre-biere-heieneken-standard_25cl.jpg", "Bière blonde 5° - 25 cl", cat10);
+			Product produit10 = new Product("1 bierre HEINEKEN 25cl- ", 3.33f, "assets/images/verre-biere-heieneken-standard_25cl.jpg", "Bière blonde 5° - 25 cl", cat10);
 
 //			produit10.setCategory(cat10);
 			
