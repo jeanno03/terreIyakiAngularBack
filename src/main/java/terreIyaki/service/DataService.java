@@ -500,7 +500,7 @@ public class DataService implements DataServiceInterface{
 			TheMessage theMessage03 = new TheMessage(3,"Votre compte a été modifié conformément à votre demande");
 			TheMessage theMessage04 = new TheMessage(4,"Erreur : au moin un des champs doit être différent");
 
-			TheMessage theMessage05 = new TheMessage(5,"Vous avez choisi de commander à emporter!");
+			TheMessage theMessage05 = new TheMessage(5,"Vous avez choisi de commander à emporter, veuillez choisir vos produits!");
 			TheMessage theMessage06 = new TheMessage(6,"Vous avez choisi de commander sur place, veuillez choisir une table");
 
 			TheMessage theMessage07 = new TheMessage(7,"Produit ajouté au panier!");
@@ -543,10 +543,10 @@ public class DataService implements DataServiceInterface{
 
 			theMessage12.setCategoryMessage(categoryMessage01);
 
-			theMessage14.setCategoryMessage(categoryMessage01);
+			theMessage14.setCategoryMessage(categoryMessage02);
 			theMessage15.setCategoryMessage(categoryMessage01);
 			theMessage16.setCategoryMessage(categoryMessage01);
-			theMessage17.setCategoryMessage(categoryMessage01);
+			theMessage17.setCategoryMessage(categoryMessage02);
 
 			theMessage18.setCategoryMessage(categoryMessage01);
 			theMessage19.setCategoryMessage(categoryMessage01);
