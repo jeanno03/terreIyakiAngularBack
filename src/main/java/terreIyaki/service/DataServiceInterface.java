@@ -8,7 +8,7 @@ public interface DataServiceInterface {
 	
 	public TheMessage jeuEssai02();
 
-
-
+	public TheMessage jeuEssai03();
+	
 
 }

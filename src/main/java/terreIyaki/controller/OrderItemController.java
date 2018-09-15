@@ -42,6 +42,14 @@ public class OrderItemController  {
 	}
 
 
-
+	
+//	  returnOrderItemByOrder(idOrder: number) {
+//		    return this.http.get(this.API + '/myOrders/' + idOrder + '/orderItems').
+//		      map((result: any) => {
+//		        return result._embedded.orderItems;
+//		      })
+//		  }
+	
+	//on veut toutes les ordersItems par l'id de l'order
 
 }

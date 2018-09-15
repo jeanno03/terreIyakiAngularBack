@@ -35,6 +35,8 @@ public class MyUser {
 	private Set<MyOrder> myOrders;
 
 	private Set<Historisation> historisations;
+	
+	private Set<Comment> comments;
 
 	public MyUser() {
 		super();
@@ -123,6 +125,16 @@ public class MyUser {
 
 	public void setHistorisations(Set<Historisation> historisations) {
 		this.historisations = historisations;
+	}
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "myUser", cascade = CascadeType.ALL)
+	public Set<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

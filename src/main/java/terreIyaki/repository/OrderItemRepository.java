@@ -18,7 +18,7 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long>{
 
 	//
 	//	//on va chercher tous les orderItem de myOrder
-	@Query(nativeQuery=true, value = "SELECT * FROM order_item o JOIN my_order m ON o.my_order_id = m.id WHERE m.id =:paramId")
+	@Query(nativeQuery=true, value = "SELECT * FROM order_item o JOIN my_order m ON o.my_order_id = m.id WHERE m.id =:paramId order by o.id asc")
 	List<OrderItem> getOrderItemsByIdMyOrder(@Param("paramId")Long myOrderId);
 	//	
 	//	

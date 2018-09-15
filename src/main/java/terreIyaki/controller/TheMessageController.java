@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import terreIyaki.entity.Comment;
 import terreIyaki.entity.MyUser;
 import terreIyaki.entity.TheMessage;
 import terreIyaki.repository.TheMessageRepository;
 import terreIyaki.service.DataServiceInterface;
 import terreIyaki.service.MyOrderServiceInterface;
 import terreIyaki.service.MyUserServiceInterface;
+import terreIyaki.tool.ComentTool;
 import terreIyaki.tool.LongClass;
 
 @RestController
@@ -208,5 +210,19 @@ public class TheMessageController implements Converter<String, Long>{
 	public TheMessage jeuEssai02() {
 		return dataServiceInterface.jeuEssai02();
 	}
+	
+	@RequestMapping(value = "/jeuEssai03", method = RequestMethod.GET)
+	@CrossOrigin(origins = "*")
+	public TheMessage jeuEssai03() {
+		return dataServiceInterface.jeuEssai03();
+	}
+	
+	@RequestMapping(value = "/insertComment/{userId}", method = RequestMethod.PUT)
+	@CrossOrigin(origins="*")
+	public TheMessage insertComment(@PathVariable String userId, @RequestBody ComentTool comment ) {
+		System.out.println(" comment.getComment() : "+ comment.getComment());
+		return myUserServiceInterface.insertComment(userId, comment);
+	}
+	
 
 }

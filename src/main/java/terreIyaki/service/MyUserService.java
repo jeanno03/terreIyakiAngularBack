@@ -1,5 +1,6 @@
 package terreIyaki.service;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import terreIyaki.entity.Category;
 import terreIyaki.entity.CategoryMessage;
 import terreIyaki.entity.Combo;
 import terreIyaki.entity.ComboCategory;
+import terreIyaki.entity.Comment;
 import terreIyaki.entity.MyGrant;
 import terreIyaki.entity.MyTable;
 import terreIyaki.entity.MyUser;
@@ -22,6 +24,7 @@ import terreIyaki.repository.CategoryMessageRepository;
 import terreIyaki.repository.CategoryRepository;
 import terreIyaki.repository.ComboCategoryRepository;
 import terreIyaki.repository.ComboRepository;
+import terreIyaki.repository.CommentRepository;
 import terreIyaki.repository.MyGrantRepository;
 import terreIyaki.repository.MyTableRepository;
 import terreIyaki.repository.MyUserRepository;
@@ -30,19 +33,23 @@ import terreIyaki.repository.ProductRepository;
 import terreIyaki.repository.StatutRepository;
 import terreIyaki.repository.TheMessageRepository;
 import terreIyaki.repository.VatRepository;
+import terreIyaki.tool.ComentTool;
 
 @Service
 public class MyUserService implements MyUserServiceInterface {
 
-//	@Autowired
-//	private StatutRepository statutRepository;
+	//	@Autowired
+	//	private StatutRepository statutRepository;
 
 	@Autowired
 	private MyUserRepository myUserRepository;
-	
+
 	@Autowired
 	private TheMessageRepository theMessageRepository;
-	
+
+	@Autowired
+	private CommentRepository commentRepository;
+
 
 	// évolution de la création de l utilisateur
 	// méthode non utilisé
@@ -172,9 +179,27 @@ public class MyUserService implements MyUserServiceInterface {
 
 		return null;
 	}
-	
-	
-		
-		
-	
+
+
+	public TheMessage insertComment(String userId,ComentTool comment) {
+
+		String co00 = comment.getComment();
+
+		System.out.print(" co00 : "+ co00);
+
+		Long userIdLong = Long.valueOf(userId);
+
+		Date aujourdhui = new Date();
+
+		MyUser my01 = myUserRepository.findById(userIdLong);
+
+		Comment co01 = new Comment (aujourdhui, co00);
+		co01.setMyUser(my01);
+
+		commentRepository.save(co01);
+
+		return theMessageRepository.findByNumber(21);
+	}
+
+
 }

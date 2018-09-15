@@ -873,6 +873,21 @@ public class DataService implements DataServiceInterface{
 					return theMessageRepository.findByNumber(19);
 		}
 		
-		
+		public TheMessage jeuEssai03() {
+			
+			TheMessage theMessage21 = new TheMessage(21,"Merci pour votre commentaire");
+			TheMessage theMessage22 = new TheMessage(22,"Jeu essai 03 ok");
+			
+			CategoryMessage categoryMessage01 = categoryMessageRepository.findByNumber(1);
+			
+			theMessage21.setCategoryMessage(categoryMessage01);
+			theMessage22.setCategoryMessage(categoryMessage01);
+			
+			theMessageRepository.save(theMessage21);
+			theMessageRepository.save(theMessage22);
+			
+			return theMessage22;
+			
+		}
 
 }
